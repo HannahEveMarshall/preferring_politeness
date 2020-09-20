@@ -1,0 +1,149 @@
+---
+title: "Preferring Politeness - Bayesian Power Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r install packages}
+install.packages("brms")
+install.packages("permutations")
+install.packages("RAppArmor")
+```
+
+```{r load libraries}
+library(BayesFactor)
+library(dplyr)
+library(tibble)
+library(tidybayes)
+library(ggplot2)
+library(tidyr)
+library(mgcv)
+library(stringi)
+library(VGAM)
+library(base)
+library(brms)
+library(broom)
+library(glmmfields)
+library(generics)
+library(broom.mixed)
+```
+```{r limit}
+setrlimit(RLIM_INFINITY)
+```
+
+```{r}
+
+n = 60 # participants per group (culture)
+effect_size = .5 # assume a medium effect size
+
+sim_d <- function(seed, n) {
+  # define the means for standardized DVs
+  mu_t <- effect_size
+  mu_c <- 0
+  set.seed(seed)
+  
+  young = runif(n, -1, 0)
+  older = runif(n, 0, 1)
+  
+  d <- tibble(id = seq(1:(2*n)),
+              age = c(young[1:(n/2)], older[1:(n/2)], young[((n/2)+1):n], older[((n/2)+1):n]),
+              group = rep(c("culture1", "culture2"), each = n)) %>%
+    mutate(culture = ifelse(group == "culture1", 0, 1),
+           y = ifelse(group == "culture1",
+                      rnorm(n, mean = mu_c, sd = 1),
+                      rnorm(n, mean = mu_t, sd = 1)))
+  return(d)
+}
+
+d <- sim_d(123, 60)
+
+# get default brms prior
+get_prior(data = d, family = gaussian,
+          y ~ 0 + Intercept + age*culture)
+
+```
+
+```{r}
+
+fit <- brm(data = d,
+           family = gaussian,
+           y ~ 0 + Intercept + age*culture,
+           prior = c(prior(normal(0, 10), class = b),
+                     prior(student_t(3, 0, 10), class = sigma)),
+           seed = 1, silent=T)
+
+```
+
+```{r}
+fit_tibble <- as_tibble(fit, prob = .95)
+tidy(fit_tibble)
+```
+
+
+```{r}
+
+plot(fit)
+
+```
+
+
+```{r}
+
+s %>%
+ # unnest(tidy) %>% 
+as_tibble(fit, prob = .95) %>% 
+  ggplot(aes(x = seed, y = estimate, ymin = lower, ymax = upper)) +
+  geom_pointrange(fatten = 1/2, alpha=.7) +
+  geom_hline(yintercept = c(0, .5), color = "white") +
+  labs(x = "seed (i.e., simulation index)",
+       y = expression(beta[culture])) 
+
+```
+
+
+```{r power}
+
+power = as_tibble(fit, prob = .95)
+#s %>%
+  #mutate(group = map(fit, tidy, prob = .95)) %>%
+  #filter(term == "b_culture") %>%
+  mutate(check = ifelse(lower > 0, 1, 0)) %>%
+  summarise(power = mean(check))
+
+powerpct = unlist(power*100)
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
