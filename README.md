@@ -16,5 +16,7 @@ _miscellaneous_: Brainstorming/compiling document (This is probably the least up
 
 _osf_pre_registration_: Pre-registration draft for experiment 1
 
+_sample_data_: Fabricated sample data for use in _sample_statistical_analyses_
+
 _sample_statistical_analyses_: Code for analyses based on fabricated sample data
 
