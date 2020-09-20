@@ -1,0 +1,253 @@
+---
+title: "Preferring Politeness - OSF Pre-Registration"
+author: "Hannah Marshall"
+date: "9/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Study Information
+
+##1.	Title (required) 
+
+Preferring politeness: Young children’s implicit understanding of polite speech
+
+##2.	Authors (required)
+
+Hannah E. Marshall, Rondeline M. Williams, and Michael C. Frank
+Department of Psychology, Stanford University
+
+##3.	Description (optional)
+
+To date, there is evidence of children reliably indicating preference for a polite speaker by 4 years (Yoon & Frank, 2019). However, previous studies have not observed reliable preference for a polite speaker in children younger than 4 years, potentially due to experimental task demands. We have developed a less challenging task, which may detect preference for a polite speaker in children younger than 4 years. Using this task, we will test 2-year-old, 3-year-old, and 4-year-old children for preference for a polite speaker.
+
+The task we’ve developed is based on shape-preference paradigms used by Hamlin, Wynn, and Bloom (2007) and Thomas and Sarnecka (2019) to study social evaluation in the contexts of helping behavior and social status respectively.
+
+##4.	Hypotheses (required)
+
+Considering our less challenging task, we predict that 2-year old, 3-year-old, and 4-year-old children will indicate preference for a polite speaker over an impolite speaker (i.e. the number of children in each age category who indicate preference for the polite speaker will differ significantly from chance). 
+
+Considering evidence for graded comprehension of politeness in young children (Yoon & Frank, 2019), we predict that children will indicate preference for a polite speaker over an impolite speaker more reliably (i.e. with a stronger effect) with increasing age.
+
+We predict that 3-year-old and 4-year-old children will reliably provide logical reasoning for choosing a speaker over an impolite speaker (i.e. the number of children in the 3-year-old and 4-year-old age categories who indicate preference for the polite speaker and provide logical reasoning will be statistically significant).
+Design Plan
+
+##5.	Study type (required)
+
+Experiment
+
+##6.	Blinding (required)
+
+For studies that involve human subjects, they will not know the treatment group to which they have been assigned.
+
+##7.	Is there any additional blinding in this study?
+
+None.
+
+##8.	Study design (required)
+
+We have created a between-subjects design with 1 factor (preference by age) where age is treated as both continuous and categorical (by age category).
+
+###Stimuli
+
+The animation begins with a familiarization phase in which a shape (the speaker) enters from the left, spots a cookie on the opposite side of the screen, gasps excitedly, approaches the cookie, eats the cookie, and celebrates by jumping up and down. This phase informs the participant that the speaker’s goal is to eat the cookie.
+
+A testing phase follows in which the speaker stops in front of another shape (the listener), who is standing in the way of the cookie. In the polite condition, the speaker says, “I am so hungry! May I please have a cookie?” In the impolite condition, the speaker says, “I am so hungry! Give me a cookie now.” Regardless of condition, the listener moves out of the speaker’s way. The speaker spots the cookie, crosses in front of the listener, approaches the cookie, eats the cookie, and celebrates by jumping up and down. 
+
+Utterances will be prerecorded. Intonation will be naturalistic and will not include exaggerated “polite” or “impolite” tone. Utterances will be cleaned using Audacity (an audio editing and recording software) and RMS will be standardized across conditions using Praat (a phonetics software).
+
+The background consists of a green block and blue block depicting grass and sky. The listener is always a blue circle. The polite and impolite speakers consist of either a red triangle and yellow square or yellow triangle and red square. The shape of the speaker (triangle/square), color of the shape (red/yellow), and order of the conditions (first/second) are counterbalanced across trials.
+
+###Procedure
+
+Testing will take place online through Zoom, a videotelephony software developed and provided by Zoom Video Communications. Test trials will be recorded with the parent’s consent. Each session will begin by testing audio quality, testing video quality, and calibrating the participant’s screen settings.
+
+The experimenter will start by introducing the child to a green pentagon and showing the child what the character looks like when it “feels very sad” (downturned mouth), “feels normal” (flat-line mouth), and “feels very happy” (upturned, open mouth).
+
+After this first familiarization phase, the animation will be played. Each participant will see both the polite condition and impolite condition as detailed above. The experimenter will not be blind to condition but will bear a blank expression and look away from the camera while the animation is playing. At the end of the animation, the caregiver attending to the child will be asked to close their eyes before the child’s preference and reasoning are assessed.
+
+##9.	Randomization (optional)
+
+On a rolling basis, participants in each age category will be randomly assigned to one of 16 unique animations which account for all necessary counterbalanced conditions.
+Sampling Plan
+
+##10.	Existing data (required)
+
+Registration prior to creation of data: As of the date of submission of this research plan for preregistration, the data have not yet been collected, created, or realized. 
+
+##11.	Explanation of existing data (optional)
+
+Not applicable
+
+##12.	Data collection procedures (required)
+
+Participants will include 2-year old, 3-year-old, and 4-year-old children living in the U.S. at the time of data collection. Participants will be recruited from Children Helping Science (an online recruitment platform for developmental research), Facebook advertisements, and direct outreach to preschools and daycares in the Bay Area through the Department of Psychology at Stanford University. A parent must provide either written consent via email or verbal consent prior to testing. The attending parent will be notified that they or the child may stop participation at any time. Children will complete the study on their family’s home or personal computers with an experimenter via Zoom. Testing sessions will be recorded with parental consent. Children will listen to the experimenter, watch the animation, and answer two questions verbally or by indicating their answers with pointing/reaching behavior. The child’s responses will be coded after the session from the recording. Including screen setup and debriefing, each session should take 10 to 15 minutes to complete. Children nor parents will be financially compensated for participation in our study.
+
+A child will be excluded if:
+(a)	the child is known to have any cognitive, auditory, or visual impairment, and the impairment is reported by the parent.
+(b)	the child is known to have any neurodevelopmental disorder that significantly affects cognitive processing or social cognition, such as down syndrome or autism spectrum disorder, and the disorder is reported by the parent. Attention deficit disorder and attention deficit hyperactivity disorder will only be grounds for exclusion if the child is unable to adequately complete test trials due to inattention or restlessness as per criteria (f).
+(c)	the child does not hear English “all of the time” or “most of the time” as indicated by the parent.
+(d)	a non-participant (i.e. the child’s parent or sibling) interjects or interferes by pointing at the screen at any time during the experiment or by audibly providing a response to either DV.
+(e)	the child fails to provide a response to DV1 after four prompts.
+(f)	the child is looking away from the screen for at least 50% of the animation.
+
+Parents will also be asked to report their child’s gender, their child’s race, and whether their child has siblings, which may all be used as covariates.
+
+##13.	Sample size (required)
+
+Our target sample size is N=60 (n=20 in each age category).
+
+##14.	Sample size rationale (optional)
+
+We selected our sample size based on a Bayesian power analysis conducted in R. To detect a moderate effect size with 80% power and a standard error probability of 0.05, we must run 50 participants. We have decided to run 60 participants to compensate for exclusions and missing data.
+
+Include R Code
+
+##15.	Stopping rule (optional)
+
+Because participant recruitment will be conducted centrally by the Department of Psychology at Stanford University, we should be able to run our exact target sample size.
+
+#Variables
+
+##16.	Manipulated variables (optional)
+
+Participants’ age will be the independent variable. Although age is continuous, we will also treat it as a categorical variable with three levels: 2-year-olds (2 years, 0 months ⩽ x < 3 years, 0 months), 3-year-olds (3 years, 0 months ⩽ x <  4 years, 0 months), and 4-year-olds (4 years, 0 months ⩽  x < 5 years, 0 months).
+
+##17.	Measured variables (required)
+
+We will measure preference between a polite and impolite speaker by presenting a forced-choice in which the polite and impolite speakers appear on opposite sides of the screen (counterbalanced) and the participant is asked, “Which friend would you like to play with?” (DV1). Pointing, reaching, and verbal answers will be coded equivalently as indication of preference. If a child does not answer, the child will be prompted again: “Can you point to the friend you would like to play with?” If the child still provides no answer, the child will be prompted again: “Do you see my two friends on the screen? Can you point to the friend you would like to play with?” If the child still provides no answer, a final prompt will be provided: “There are no right or wrong answers, so you can choose whichever one you would like to play with.”
+
+If the child still provides no answer, the session will be concluded.
+
+If an answer is provided, the child will be asked, “Why did you choose that friend?” (DV2). If the child does not answer, the child will be prompted again: “Why do you want to play with that friend?” 
+
+##18.	Indices (optional)
+
+Not applicable
+Analysis Plan
+
+##19.	Statistical models (required)
+
+We intend to run a Bayesian binomial test from the BayesianFirstAid package in R to assess whether the proportion of children in each age category who indicate preference for a polite speaker differs significantly from chance. 
+
+```{r Bayesian binomial tests for speaker preference}
+#Insert following code chunks from sample_statistical_analyses.Rmd:
+#{r count speaker preference}
+#{r Bayesian binomial test 2s DV1}
+#{r Bayesian binomial test 3s DV1}
+#{r Bayesian binomial test 4s DV1}
+```
+
+We will also run Bayesian binomial tests to assess whether children exhibit shape, color, order, or side bias: whether the number of children overall who indicate preference for the triangle speaker, the square speaker, the red speaker, the yellow speaker, the first speaker, the second speaker, the speaker on the left of the forced-choice, or the speaker on the right of the forced-choice differs significantly from chance.
+
+```{r Bayesian binomial tests for biases}
+#Insert following code chunks from sample_statistical_analyses.Rmd:
+#{r count biases}
+#{r binomial test shape bias}
+#{r binomial test color bias}
+#{r binomial test order bias}
+#{r binomial test side bias}
+```
+
+We intend to run a Bayesian logistic regression model from the rstanarm package to examine the effect of age on children’s preference between polite and impolite speakers. We will run an additional Bayesian logistic regression model to examine the effect of age on children’s reasoning for their preference.
+
+```{r Bayesian logistic models}
+#Insert following code chunks from sample_statistical_analyses.Rmd:
+#{r DV1 logistic model}
+#{r DV2 primary logistic model}
+#{r DV2 secondary logistic model}
+```
+
+###Key
+
+*sp: frequency matrix of speaker preference by age
+
+*pp_data: dataset
+
+*age: age
+
+*speaker_preference: speaker preference (0 = impolite, 1 = polite)
+
+*bbt2s: Bayesian binomial test for 2-year-old age category
+
+*bbt3s: Bayesian binomial test for 3-year-old age category
+
+*bbt4s: Bayesian binomial test for 4-year-old age category
+
+*sh: frequency matrix of shape preference
+
+*bbt_sh: Bayesian binomial test for shape bias
+
+*co: frequency matrix of color preference
+
+*bbt_co: Bayesian binomial test for color bias
+
+*or: frequency matrix of order preference
+
+*bbt_or: Bayesian binomial test for order bias
+
+*si: frequency matrix of side preference
+
+*bbt_si: Bayesian binomial test for side bias
+
+*DV1_model: Bayesian logistic regression model of speaker preference as a function of age
+
+*DV2_pmodel: Bayesian logistic regression model of reasoning (with all reasoning levels) as a function of age
+
+*DV2_smodel: Bayesian logistic regression model of logical reasoning as a function of age
+
+*logical: logical reasoning (0 = logical reasoning not provided, 1 = logical reasoning provided)
+
+##20.	Transformations (optional)
+
+Where age is categorically described, it will be coded to consist of three levels: 2-year-olds (2 years, 0 months ⩽ x < 3 years, 0 months), 3-year-olds (3 years, 0 months ⩽ x <  4 years, 0 months), and 4-year-olds (4 years, 0 months ⩽  x < 5 years, 0 months).
+
+DV1 (preference) will be dummy coded with preference for polite speaker as 1 and preference for the impolite speaker as 0.
+
+DV2 will be coded to include:
+(1)	no reasoning: silence, shrugging, or “I don’t know.” A child’s reasoning will only qualify for classification (1) if the child does not provide reasoning after a second prompt.
+(2)	superficial reasoning: any explanation regarding elements besides speaker utterance, i.e. “Because I like him.”
+(3)	illogical reasoning: any explanation that is contradictory to the animation, i.e. describing the polite speaker as “mean” or “rude”
+(4)	logical reasoning: any explanation regarding true character of the speaker, i.e. describing the polite speaker as “nice” or “polite”
+(5)	other reasoning: any explanation that does not fall under classifications (1) – (4).
+
+During analyses, DV2 will be dummy coded with logical reasoning as 1 and no reasoning/other reasoning as 0.
+
+##21.	Inference criteria (optional)
+
+We will make inferences based on p-values, credible intervals, and effect sizes.
+
+An alpha of 0.05 will be our criterion for statistical significance. We will use a 95% credible interval criterion for success. We will interpret our Bayes factor based on the scale for interpretation posed by Kass and Raftery (1995). We will interpret our effect sizes based on the expanded scale for interpretation initially suggested by Cohen (1988) and expanded by Sawilowsky (2009). Two-tailed tests will be used for each of our analyses.
+
+##22.	Data exclusion (optional)
+
+No checks will be performed to determine eligibility for inclusion besides verification that each subject answered DV1. All data-based outliers will be included in analyses. 
+
+##23.	Missing data (optional)
+
+Our study will use pairwise deletion. If a child does not complete DV2, their DV1 data will be included in analyses. If a child does not complete DV1, that child will be excluded from analyses.
+
+
+##24.	Exploratory analysis (optional)
+
+Not applicable.
+
+#Other
+
+##25.	Other (Optional)
+
+Works Referenced
+
+-	Cohen, J. (1988). Statistical power analysis for the behavioral sciences New York. NY: Academic.
+
+-	Kass, R. E., & Raftery, A. E. (1995). Bayes factors. Journal of the american statistical association, 90(430), 773-795.
+
+-	Sawilowsky, S. S. (2009). New effect size rules of thumb. Journal of Modern Applied Statistical Methods, 8(2), 26.
+
+-	Yoon, E. J., & Frank, M. C. (2019). Children's understanding of polite requests.
+
+
+
