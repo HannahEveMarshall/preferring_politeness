@@ -12,7 +12,7 @@ _basyesian_power_analysis_: Bayesian power analysis for sample size determinatio
 
 _full_script_: Full script for online studies
 
-_miscellaneous_: Brainstorming master document (This is likely to consistently be the least up-to-date document on the repository.)
+_miscellaneous_: Brainstorming/compiling document (This is probably the least up-to-date document on the repository.)
 
 _osf_pre_registration_: Pre-registration draft for experiment 1
 
