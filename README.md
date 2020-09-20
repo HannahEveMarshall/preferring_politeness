@@ -1,4 +1,4 @@
-# Preferring politeness: Young children's implicit understanding of linguitic politeness
+# Preferring politeness: Young children's implicit understanding of linguistic politeness
 This is a repository for an ongoing Honors project in the Department of Psychology at Stanford University.
 
 ## Contributing Authors
