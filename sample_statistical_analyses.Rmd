@@ -69,7 +69,7 @@ NOTE: It also seems important to determine whether the means of each age group d
 
 Alternatively, perhaps additional Bayesian binomial tests would do the trick (?).
 
-Both option are coded below.
+Both option are coded below. This also might be overkill...
 
 ```{r Bayes factor 2vs3}
 #Calculate a Bayes factor to compare the mean preference of 2- and 3-year olds.
