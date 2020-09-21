@@ -31,9 +31,9 @@ library(tibble)
 
 #Simulate data.
 
-#QUESTION: Here, the probability of success (prob) is comparable to the frequentist effect size. I am not sure how to compute a value for the probability of success given that we are trying to detect a moderate effect.
+#The probability of success (prob) is comparable to the effect size in a frequentist power analysis. NOTE: I am not sure how to compute a value for the probability of success given that we are trying to detect a moderate effect.
 
-#Once probability of success is set, we can vary n until the final output (see final code chunk) is our desired power.
+#Once probability of success is set, we can vary n until the final output is our desired power.
 
 set.seed(3)
 
@@ -45,7 +45,9 @@ str(d)
 
 ```{r get prior}
 
-#This returns the brms default prior for intercept-only logistic regression models. I don't understand the output, but according to the internet, it is a pretty liberal prior. 
+#This code returns the brms default prior for intercept-only logistic regression models. I don't understand the output, but according to the internet, it's a liberal prior. 
+
+#"y|trials(1)~1" indicates that each y value corresponds to one trial, representing n=1 of the sample.
 
 get_prior(formula=y|trials(1)~1, data=d, family=binomial)
 
@@ -53,9 +55,9 @@ get_prior(formula=y|trials(1)~1, data=d, family=binomial)
 
 ```{r model with iterations}
 
-#Model data using a more skeptical prior of normal(0, 2). Mathematically, I'm not sure what role this prior has. It will probably have to be adjusted.
+#Model data using a more skeptical prior of normal(0, 2). 
 
-#"y|trials(1)~1" indicates that each y value corresponds to one trial, representing n=1 of sample.
+#NOTE: Mathematically, I'm not sure what role this prior has. It will probably have to be adjusted.
 
 fit <- brm(data=d, family=binomial, y|trials(1)~1, prior(normal(0,2), class=Intercept), seed=3)
 
@@ -69,15 +71,16 @@ print(fit)
 
 ```{r probability metric}
 
-#Because the intercept is returned as the log odds, transform it to a probability metric.
+#Because the intercept is returned as log odds, transform it to a probability metric.
 
 fixef(fit)["Intercept", 1] %>% 
   inv_logit_scaled()
+
 ```
 
 ```{r all draws}
 
-#Extract all the posterior draws and transform them from the log-odds to probability metrics.
+#Extract all the posterior draws and transform them from log odds to probability metrics.
 
 k <- posterior_samples(fit) %>% 
   transmute(p=inv_logit_scaled(b_Intercept))
@@ -112,7 +115,7 @@ median_qi(k)
 
 #Here, "prob_hit" must correspond to the argument "prob" in code chunk {r simulate data}.
 
-sim_data_fit <- function(seed, n_participants) {
+s_data <- function(seed, n_participants) {
   
   n_trials <- 1
   prob_hit <- .8
@@ -131,15 +134,16 @@ sim_data_fit <- function(seed, n_participants) {
 ```
 
 ```{r run simulation function}
+
 #Run the simulation.
 
-#Here, argument "seed" must be set to 1:1000+. It is set to 1:10 temporarily for ease while running edits. 
+#Argument "seed" should be set to 1:1000+. I temporarily set it to 1:10 for ease running and rerunning simulation while editing code. 
 
 #Argument "n_participants" must correspond with "n" in code chunk {r simulate data}.
 
 sim1 <- 
   tibble(seed=1:10) %>% 
-  mutate(ci=map(seed, sim_data_fit, n_participants=60)) %>% 
+  mutate(ci=map(seed, s_data, n_participants=60)) %>% 
   unnest(cols=c(ci))
 
 ```
@@ -148,11 +152,12 @@ sim1 <-
 
 #Compute power. 
 
-#I'm really hoping that I've made an error somewhere. Am I correct in saying this output indicates that even if 80% of children in a particular age group possess preference for a polite speaker, with 60 participants we can only detect the effect with 20% power?
+#In the function "mean", ".upper" must be set to equal less than "prob" and "prob_hit" in code chunks {r simulate data} and {r simulation function}, respectively.
+
+#I'm hoping that I've made an error somewhere... Am I correct in saying this output indicates that even if 80% of children in a particular age group possess preference for a polite speaker, with 60 participants we can only expect to detect the effect with 20% power?
 
 sim1 %>% 
   mutate(width = .upper - .lower) %>% 
   summarise("power" = mean(.upper < .8))
 
 ```
-
