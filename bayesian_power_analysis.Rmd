@@ -7,8 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
 ```{r load libraries}
 library(BayesFactor)
 library(dplyr)
@@ -29,52 +27,66 @@ library(tidyverse)
 library(tibble)
 ```
 
-### Attempt 1
+```{r simulate data}
 
-```{r}
-#Simulate data. QUESTION: Is the probability of success comparable to the frequentist effect size? Is this the value that we vary to calculate power?
+#Simulate data.
+
+#QUESTION: Here, the probability of success (prob) is comparable to the frequentist effect size. I am not sure how to compute a value for the probability of success given that we are trying to detect a moderate effect.
+
+#Once probability of success is set, we can vary n until the final output (see final code chunk) is our desired power.
 
 set.seed(3)
 
 d <-tibble(y=rbinom(n=60, size=1, prob=0.8))
 
 str(d)
+
 ```
 
-```{r}
-#I believe this is used to get the brms default for intercept-only logistic regression model, but I do not understand the output.
+```{r get prior}
+
+#This returns the brms default prior for intercept-only logistic regression models. I don't understand the output, but according to the internet, it is a pretty liberal prior. 
 
 get_prior(formula=y|trials(1)~1, data=d, family=binomial)
+
 ```
 
-```{r}
-#Model with the brm() function, using a more skeptical prior of normal(0, 2).
+```{r model with iterations}
 
-#y|trials(1)~1 indicates that each y value corresponds to a single trial, which itself corresponds to n=1 portion of the statistical formula.
+#Model data using a more skeptical prior of normal(0, 2). Mathematically, I'm not sure what role this prior has. It will probably have to be adjusted.
+
+#"y|trials(1)~1" indicates that each y value corresponds to one trial, representing n=1 of sample.
 
 fit <- brm(data=d, family=binomial, y|trials(1)~1, prior(normal(0,2), class=Intercept), seed=3)
+
 ```
 
-```{r}
+```{r print model}
+
 print(fit)
+
 ```
 
-```{r}
-#Because the intercept is on the scale of the logit link (the log odds), we can transform it with the brms::inv_logit_scaled() function.
+```{r probability metric}
+
+#Because the intercept is returned as the log odds, transform it to a probability metric.
 
 fixef(fit)["Intercept", 1] %>% 
   inv_logit_scaled()
 ```
 
-```{r}
-#Extract the posterior draws and transform from the log-oss to a probability metric.
+```{r all draws}
+
+#Extract all the posterior draws and transform them from the log-odds to probability metrics.
 
 k <- posterior_samples(fit) %>% 
-  transmute(p=inv_logit_scaled(b_Intercept)) #%>% 
+  transmute(p=inv_logit_scaled(b_Intercept))
 
 k
+
 ```
-```{r}
+```{r visualize}
+
 #Visualize the probability metric of the posterior draws.
 
   ggplot(k, aes(x=p)) +
@@ -83,29 +95,33 @@ k
   scale_x_continuous(limits=c(0, 1)) +
   scale_y_continuous(NULL, breaks=NULL) +
   theme_classic()
+
 ```
 
-```{r}
+```{r intervals}
+
 #Calculate the posterior median and 95% credible interval.
 
-posterior_samples(fit1) %>% 
-  transmute(p=inv_logit_scaled(b_Intercept)) %>% 
-  median_qi()
+median_qi(k)
+
 ```
 
-```{r}
-#Write a simulation function for the power analysis. QUESTION: What is n_player
+```{r simulation function}
+
+#Write a simulation function for the power analysis.
+
+#Here, "prob_hit" must correspond to the argument "prob" in code chunk {r simulate data}.
 
 sim_data_fit <- function(seed, n_participants) {
   
   n_trials <- 1
-  prob_hit <- .5
+  prob_hit <- .8
   
   set.seed(seed)
   
   d <- tibble(y = rbinom(n = n_participants, size = n_trials, prob = prob_hit))
   
-  update(fit1, newdata = d, seed = seed) %>% 
+  update(fit, newdata = d, seed = seed) %>% 
   posterior_samples() %>% 
   transmute(p = inv_logit_scaled(b_Intercept)) %>% 
   median_qi() %>% 
@@ -114,20 +130,29 @@ sim_data_fit <- function(seed, n_participants) {
 }
 ```
 
-```{r}
+```{r run simulation function}
 #Run the simulation.
+
+#Here, argument "seed" must be set to 1:1000+. It is set to 1:10 temporarily for ease while running edits. 
+
+#Argument "n_participants" must correspond with "n" in code chunk {r simulate data}.
+
 sim1 <- 
   tibble(seed=1:10) %>% 
   mutate(ci=map(seed, sim_data_fit, n_participants=60)) %>% 
   unnest(cols=c(ci))
+
 ```
 
-```{r}
+```{r power}
+
 #Compute power. 
 
-#I'm quite sure that there is an error in the code mean(.upper < .5). This was the formula I found online, but I do not understand it so I'm not sure how to fix it.
+#I'm really hoping that I've made an error somewhere. Am I correct in saying this output indicates that even if 80% of children in a particular age group possess preference for a polite speaker, with 60 participants we can only detect the effect with 20% power?
 
 sim1 %>% 
   mutate(width = .upper - .lower) %>% 
-  summarise("power" = mean(.upper < .5))
+  summarise("power" = mean(.upper < .8))
+
 ```
+
