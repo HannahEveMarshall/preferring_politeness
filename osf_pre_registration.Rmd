@@ -260,7 +260,6 @@ All data-based outliers will be included in analyses.
 
 Our study will use pairwise deletion. If a child does not complete DV2, their DV1 data will be included in analyses. If a child does not complete DV1, that child will be excluded from analyses.
 
-
 **24. Exploratory analysis (optional)**
 
 Not applicable.
