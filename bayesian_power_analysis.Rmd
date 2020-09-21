@@ -9,12 +9,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-```{r install packages}
-install.packages("brms")
-install.packages("permutations")
-install.packages("RAppArmor")
-```
-
 ```{r load libraries}
 library(BayesFactor)
 library(dplyr)
@@ -31,119 +25,109 @@ library(broom)
 library(glmmfields)
 library(generics)
 library(broom.mixed)
+library(tidyverse)
+library(tibble)
 ```
-```{r limit}
-setrlimit(RLIM_INFINITY)
+
+### Attempt 1
+
+```{r}
+#Simulate data. QUESTION: Is the probability of success comparable to the frequentist effect size? Is this the value that we vary to calculate power?
+
+set.seed(3)
+
+d <-tibble(y=rbinom(n=60, size=1, prob=0.8))
+
+str(d)
 ```
 
 ```{r}
+#I believe this is used to get the brms default for intercept-only logistic regression model, but I do not understand the output.
 
-n = 60 # participants per group (culture)
-effect_size = .5 # assume a medium effect size
+get_prior(formula=y|trials(1)~1, data=d, family=binomial)
+```
 
-sim_d <- function(seed, n) {
-  # define the means for standardized DVs
-  mu_t <- effect_size
-  mu_c <- 0
+```{r}
+#Model with the brm() function, using a more skeptical prior of normal(0, 2).
+
+#y|trials(1)~1 indicates that each y value corresponds to a single trial, which itself corresponds to n=1 portion of the statistical formula.
+
+fit <- brm(data=d, family=binomial, y|trials(1)~1, prior(normal(0,2), class=Intercept), seed=3)
+```
+
+```{r}
+print(fit)
+```
+
+```{r}
+#Because the intercept is on the scale of the logit link (the log odds), we can transform it with the brms::inv_logit_scaled() function.
+
+fixef(fit)["Intercept", 1] %>% 
+  inv_logit_scaled()
+```
+
+```{r}
+#Extract the posterior draws and transform from the log-oss to a probability metric.
+
+k <- posterior_samples(fit) %>% 
+  transmute(p=inv_logit_scaled(b_Intercept)) #%>% 
+
+k
+```
+```{r}
+#Visualize the probability metric of the posterior draws.
+
+  ggplot(k, aes(x=p)) +
+  geom_density(fill="grey30") +
+  labs(title="Density of probability of selecting a polite speaker", x="Probability of selecting a polite speaker") +
+  scale_x_continuous(limits=c(0, 1)) +
+  scale_y_continuous(NULL, breaks=NULL) +
+  theme_classic()
+```
+
+```{r}
+#Calculate the posterior median and 95% credible interval.
+
+posterior_samples(fit1) %>% 
+  transmute(p=inv_logit_scaled(b_Intercept)) %>% 
+  median_qi()
+```
+
+```{r}
+#Write a simulation function for the power analysis. QUESTION: What is n_player
+
+sim_data_fit <- function(seed, n_participants) {
+  
+  n_trials <- 1
+  prob_hit <- .5
+  
   set.seed(seed)
   
-  young = runif(n, -1, 0)
-  older = runif(n, 0, 1)
+  d <- tibble(y = rbinom(n = n_participants, size = n_trials, prob = prob_hit))
   
-  d <- tibble(id = seq(1:(2*n)),
-              age = c(young[1:(n/2)], older[1:(n/2)], young[((n/2)+1):n], older[((n/2)+1):n]),
-              group = rep(c("culture1", "culture2"), each = n)) %>%
-    mutate(culture = ifelse(group == "culture1", 0, 1),
-           y = ifelse(group == "culture1",
-                      rnorm(n, mean = mu_c, sd = 1),
-                      rnorm(n, mean = mu_t, sd = 1)))
-  return(d)
+  update(fit1, newdata = d, seed = seed) %>% 
+  posterior_samples() %>% 
+  transmute(p = inv_logit_scaled(b_Intercept)) %>% 
+  median_qi() %>% 
+  select(.lower:.upper)
+  
 }
-
-d <- sim_d(123, 60)
-
-# get default brms prior
-get_prior(data = d, family = gaussian,
-          y ~ 0 + Intercept + age*culture)
-
 ```
 
 ```{r}
-
-fit <- brm(data = d,
-           family = gaussian,
-           y ~ 0 + Intercept + age*culture,
-           prior = c(prior(normal(0, 10), class = b),
-                     prior(student_t(3, 0, 10), class = sigma)),
-           seed = 1, silent=T)
-
+#Run the simulation.
+sim1 <- 
+  tibble(seed=1:10) %>% 
+  mutate(ci=map(seed, sim_data_fit, n_participants=60)) %>% 
+  unnest(cols=c(ci))
 ```
 
 ```{r}
-fit_tibble <- as_tibble(fit, prob = .95)
-tidy(fit_tibble)
-```
+#Compute power. 
 
+#I'm quite sure that there is an error in the code mean(.upper < .5). This was the formula I found online, but I do not understand it so I'm not sure how to fix it.
 
-```{r}
-
-plot(fit)
-
-```
-
-
-```{r}
-
-s %>%
- # unnest(tidy) %>% 
-as_tibble(fit, prob = .95) %>% 
-  ggplot(aes(x = seed, y = estimate, ymin = lower, ymax = upper)) +
-  geom_pointrange(fatten = 1/2, alpha=.7) +
-  geom_hline(yintercept = c(0, .5), color = "white") +
-  labs(x = "seed (i.e., simulation index)",
-       y = expression(beta[culture])) 
-
-```
-
-
-```{r power}
-
-power = as_tibble(fit, prob = .95)
-#s %>%
-  #mutate(group = map(fit, tidy, prob = .95)) %>%
-  #filter(term == "b_culture") %>%
-  mutate(check = ifelse(lower > 0, 1, 0)) %>%
-  summarise(power = mean(check))
-
-powerpct = unlist(power*100)
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
+sim1 %>% 
+  mutate(width = .upper - .lower) %>% 
+  summarise("power" = mean(.upper < .5))
 ```
