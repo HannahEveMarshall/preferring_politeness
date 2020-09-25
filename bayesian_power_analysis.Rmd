@@ -164,8 +164,6 @@ sim1 <-
 
 #I'm hoping that I've made an error somewhere... Am I correct in saying this output indicates that even if 80% of children in a particular age group possess preference for a polite speaker, with 60 participants we can only expect to detect the effect with 20% power?
 
-sim1 %>% 
-  mutate(width = .upper - .lower) %>% 
-  summarise("power" = mean(.upper < .8))
+summarise(sim1, "power" = mean(.upper > success_probability))
 
 ```
