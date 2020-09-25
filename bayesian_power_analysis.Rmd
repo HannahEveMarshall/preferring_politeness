@@ -4,10 +4,13 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 ```{r load libraries}
+
 library(BayesFactor)
 library(dplyr)
 library(tibble)
@@ -25,19 +28,28 @@ library(generics)
 library(broom.mixed)
 library(tidyverse)
 library(tibble)
+
 ```
+
+```{r set values}
+
+#The probability of success (prob) is comparable to the effect size in a frequentist power analysis. NOTE: I am not sure how to compute a value for the probability of success given that we are trying to detect a moderate effect.
+
+#Once probability of success is set, we can vary N until the final output is our desired power.
+
+N <- 60
+success_probability <- 0.8
+
+```
+
 
 ```{r simulate data}
 
 #Simulate data.
 
-#The probability of success (prob) is comparable to the effect size in a frequentist power analysis. NOTE: I am not sure how to compute a value for the probability of success given that we are trying to detect a moderate effect.
-
-#Once probability of success is set, we can vary n until the final output is our desired power.
-
 set.seed(3)
 
-d <-tibble(y=rbinom(n=60, size=1, prob=0.8))
+d <-tibble(y=rbinom(n=N, size=1, prob=success_probability))
 
 str(d)
 
@@ -82,17 +94,17 @@ fixef(fit)["Intercept", 1] %>%
 
 #Extract all the posterior draws and transform them from log odds to probability metrics.
 
-k <- posterior_samples(fit) %>% 
+probability_draws <- posterior_samples(fit) %>% 
   transmute(p=inv_logit_scaled(b_Intercept))
 
-k
+probability_draws
 
 ```
 ```{r visualize}
 
 #Visualize the probability metric of the posterior draws.
 
-  ggplot(k, aes(x=p)) +
+  ggplot(probability_draws, aes(x=p)) +
   geom_density(fill="grey30") +
   labs(title="Density of probability of selecting a polite speaker", x="Probability of selecting a polite speaker") +
   scale_x_continuous(limits=c(0, 1)) +
@@ -105,7 +117,7 @@ k
 
 #Calculate the posterior median and 95% credible interval.
 
-median_qi(k)
+median_qi(probability_draws)
 
 ```
 
@@ -113,12 +125,10 @@ median_qi(k)
 
 #Write a simulation function for the power analysis.
 
-#Here, "prob_hit" must correspond to the argument "prob" in code chunk {r simulate data}.
-
 s_data <- function(seed, n_participants) {
   
   n_trials <- 1
-  prob_hit <- .8
+  prob_hit <- success_probability
   
   set.seed(seed)
   
@@ -139,11 +149,9 @@ s_data <- function(seed, n_participants) {
 
 #Argument "seed" should be set to 1:1000+. I temporarily set it to 1:10 for ease running and rerunning simulation while editing code. 
 
-#Argument "n_participants" must correspond with "n" in code chunk {r simulate data}.
-
 sim1 <- 
   tibble(seed=1:10) %>% 
-  mutate(ci=map(seed, s_data, n_participants=60)) %>% 
+  mutate(ci=map(seed, s_data, n_participants=N)) %>% 
   unnest(cols=c(ci))
 
 ```
