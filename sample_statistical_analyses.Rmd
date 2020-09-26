@@ -38,18 +38,22 @@ View(raw_pp_data)
 
 ```{r compile DV2}
 
-#Create additional variable in which "reasoning" observations are coded as 1 = logical reasoning and 0 = other reasoning.
+#Create two additional variables: "logical" in which "reasoning" observations are coded as 1 = logical reasoning and 0 = other reasoning, and "age_category".
 
-pp_data <- mutate(raw_pp_data, logical = ifelse(reasoning==4, 1, 0))
+pp_data <- raw_pp_data %>% 
+  mutate(logical = ifelse(reasoning==4, 1, 0)) %>% 
+  mutate(age_category = ifelse(age<3, 2, ifelse(age>=4, 4, 3)))
+
 View(pp_data)
 
 ```
+
 
 ```{r count speaker preference}
 
 #Create a frequency matrix to pull values from when running Bayesian binomial tests.
 
-sp <- table(pp_data$age, pp_data$speaker_preference)
+sp <- table(pp_data$age_category, pp_data$speaker_preference)
 print(sp)
 
 ```
