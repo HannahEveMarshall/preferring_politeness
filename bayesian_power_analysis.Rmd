@@ -37,7 +37,7 @@ library(tibble)
 
 #Once probability of success is set, we can vary N until the final output is our desired power.
 
-N <- 60
+N <- 120
 success_probability <- 0.8
 
 ```
@@ -164,6 +164,6 @@ sim1 <-
 
 #I'm hoping that I've made an error somewhere... Am I correct in saying this output indicates that even if 80% of children in a particular age group possess preference for a polite speaker, with 60 participants we can only expect to detect the effect with 20% power?
 
-summarise(sim1, "power" = mean(.upper > success_probability))
+summarise(sim1, "power" = mean(.upper < success_probability))
 
 ```
