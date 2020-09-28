@@ -35,9 +35,9 @@ library(tibble)
 
 #The probability of success (prob) is comparable to the effect size in a frequentist power analysis. NOTE: I am not sure how to compute a value for the probability of success given that we are trying to detect a moderate effect.
 
-#Once probability of success is set, we can vary N until the final output is our desired power.
+#Once probability of success is set, we can vary N (number of participants in each age category) until the final output is our desired power.
 
-N <- 120
+N <- 20
 success_probability <- 0.8
 
 ```
