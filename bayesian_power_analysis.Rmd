@@ -12,40 +12,27 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r load libraries}
 
 library(BayesFactor)
-library(dplyr)
-library(tibble)
 library(tidybayes)
-library(ggplot2)
-library(tidyr)
 library(mgcv)
 library(stringi)
 library(VGAM)
-library(base)
 library(brms)
 library(broom)
 library(glmmfields)
 library(generics)
 library(broom.mixed)
 library(tidyverse)
-library(tibble)
 
 ```
 
 ```{r set values}
 
-#The probability of success (prob) is comparable to the effect size in a frequentist power analysis. NOTE: I am not sure how to compute a value for the probability of success given that we are trying to detect a moderate effect.
-
-#Once probability of success is set, we can vary N (number of participants in each age category) until the final output is our desired power.
-
-N <- 20
+N <- 15
 success_probability <- 0.8
 
 ```
 
-
 ```{r simulate data}
-
-#Simulate data.
 
 set.seed(3)
 
@@ -55,27 +42,12 @@ str(d)
 
 ```
 
-```{r get prior}
-
-#This code returns the brms default prior for intercept-only logistic regression models. I don't understand the output, but according to the internet, it's a liberal prior. 
-
-#"y|trials(1)~1" indicates that each y value corresponds to one trial, representing n=1 of the sample.
-
-get_prior(formula=y|trials(1)~1, data=d, family=binomial)
-
-```
-
 ```{r model with iterations}
 
-#Model data using a more skeptical prior of normal(0, 2). 
-
-#NOTE: Mathematically, I'm not sure what role this prior has. It will probably have to be adjusted.
+#"y|trials(1)~1" indicates that each y value corresponds to one trial, representing n=1 of the sample.
+#The prior normal(0, 2) may have to be adjusted.
 
 fit <- brm(data=d, family=binomial, y|trials(1)~1, prior(normal(0,2), class=Intercept), seed=3)
-
-```
-
-```{r print model}
 
 print(fit)
 
@@ -85,8 +57,7 @@ print(fit)
 
 #Because the intercept is returned as log odds, transform it to a probability metric.
 
-fixef(fit)["Intercept", 1] %>% 
-  inv_logit_scaled()
+inv_logit_scaled(fixef(fit)["Intercept", 1])
 
 ```
 
@@ -101,8 +72,6 @@ probability_draws
 
 ```
 ```{r visualize}
-
-#Visualize the probability metric of the posterior draws.
 
   ggplot(probability_draws, aes(x=p)) +
   geom_density(fill="grey30") +
@@ -123,8 +92,6 @@ median_qi(probability_draws)
 
 ```{r simulation function}
 
-#Write a simulation function for the power analysis.
-
 s_data <- function(seed, n_participants) {
   
   n_trials <- 1
@@ -141,13 +108,12 @@ s_data <- function(seed, n_participants) {
   select(.lower:.upper)
   
 }
+
 ```
 
 ```{r run simulation function}
 
-#Run the simulation.
-
-#Argument "seed" should be set to 1:1000+. I temporarily set it to 1:10 for ease running and rerunning simulation while editing code. 
+#Argument "seed" should be set to 1:1000+ but is temporarily set to 1:10 for ease running simulation while editing code. 
 
 sim1 <- 
   tibble(seed=1:10) %>% 
@@ -156,14 +122,27 @@ sim1 <-
 
 ```
 
-```{r power}
+```{r visualize results}
 
-#Compute power. 
+#Most of our 95% intervals should not cross the null value p = 0.5.
 
-#In the function "mean", ".upper" must be set to equal less than "prob" and "prob_hit" in code chunks {r simulate data} and {r simulation function}, respectively.
-
-#I'm hoping that I've made an error somewhere... Am I correct in saying this output indicates that even if 80% of children in a particular age group possess preference for a polite speaker, with 60 participants we can only expect to detect the effect with 20% power?
-
-summarise(sim1, "power" = mean(.upper < success_probability))
+sim1 %>% 
+  ggplot(aes(x = .lower, xend = .upper, y = seed, yend = seed)) +
+  geom_vline(xintercept = 0.5, color = "red", linetype = 2) +
+  geom_segment(color = "blue") +
+  scale_x_continuous("probability space", limits = c(0, 1))
 
 ```
+
+```{r}
+
+#In rejecting the null hypothesis of p = 0.5, we need to ensure 0.5 is never between the lower and upper limits of our 95% intervals. Conditions where .upper < 0.5 and conditions where .lower > 0.5 always reject the null hypothesis.
+
+null <- 0.5
+
+sim1 %>% 
+  mutate(reject_the_null = null < .lower | null > .upper) %>% 
+  summarise(power = mean(reject_the_null))
+
+```
+
