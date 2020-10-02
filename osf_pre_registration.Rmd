@@ -55,9 +55,9 @@ We have created a within-subjects design with 1 factor (preference by age) where
 
 _Stimuli_
 
-The animation will begin with a (secondary) familiarization phase in which  a shape (the speaker) enters from the left of the screen, spots a cookie on the opposite side of the screen, gasps excitedly, approaches the cookie, eats the cookie, and celebrates by jumping up and down. This phase will inform the participant that the speaker’s goal is to eat the cookie.
+The animation will begin with a (secondary) familiarization phase in which  a shape (the speaker) enters from the left of the screen, spots two cookies on the opposite side of the screen, gasps excitedly, approaches the cookies, eats one cookie, and celebrates by jumping up and down. This phase will inform the participant that the speaker’s goal is to eat a cookie.
 
-A testing phase will follow in which the speaker enters from the left of the screen and stops in front of another shape (the listener), who is standing in the way of the cookie. In the polite condition, the speaker will say, “I am so hungry! May I please have a cookie?” In the impolite condition, the speaker will say, “I am so hungry! Give me a cookie now.” Regardless of condition, the listener will move out of the speaker’s way. The speaker will gasp excitedly, cross in front of the listener, approach the cookie, eat the cookie, and celebrate by jumping up and down. 
+A testing phase will follow in which the speaker enters from the left of the screen and stops in front of another shape (the listener), who is standing in the way of the cookies. In the polite condition, the speaker will say, “I am so hungry! May I please have a cookie?” In the impolite condition, the speaker will say, “I am so hungry! Give me a cookie now.” Regardless of condition, the listener will move out of the speaker’s way. The speaker will gasp excitedly, cross in front of the listener, approach the cookies, eat one cookie, and celebrate by jumping up and down. 
 
 Utterances will be prerecorded. Intonation will be naturalistic and will not include exaggerated “polite” or “impolite” tone. Utterances will be cleaned using Audacity (an audio editing and recording software) and RMS will be standardized across conditions using Praat (a phonetics software).
 
@@ -67,7 +67,9 @@ _Procedure_
 
 Testing will take place online through Zoom, a videotelephony software developed and provided by Zoom Video Communications. Test trials will be recorded with the parent’s consent. Each session will begin by testing audio quality, testing video quality, and calibrating the participant’s screen settings.
 
-The experimenter will begin by introducing the child to a green pentagon with eyes and a mouth to indicate animateness. The experimenter will then show the child what the character looks like when it “feels very sad” (downturned mouth), “feels normal” (flat-line mouth), and “feels very happy” (upturned, open mouth). This primary familiarization phase will be to introduce shapes as animate characters and to accustom the participant to facial expressions that will be used in the animation.
+The experimenter will begin with a warm-up activity to build rapport with the child. The experimenter will play a short "I-Spy" game with the child during which a black and white dog will emerge from behind a pile of leaves, then a brown squirrel will emerge from the same pile. The animals will be front-facing and centered and the pile of leaves will be symmetrical to avoid influencing side bias.
+
+Next, the experimenter will introduce the child to a green pentagon with eyes and a mouth to indicate animateness. The experimenter will then show the child what the character looks like when it “feels very sad” (downturned mouth), “feels normal” (flat-line mouth), and “feels very happy” (upturned, open mouth). The purpose of this primary familiarization phase will be to introduce shapes as animate characters and to accustom the participant to facial expressions that will be used in the animation.
 
 After this primary familiarization phase, the animation will be played. Each participant will see both the polite condition and impolite condition as detailed above. The experimenter will not be blind to condition but will bear a blank expression and look down while the animation is playing. At the end of the animation, the caregiver attending to the child will be asked to close their eyes before the child’s preference and reasoning are assessed.
 
