@@ -6,9 +6,11 @@ Adults routinely demonstrate social sensitivity by utilizing polite speech. But 
 
 ## File Descriptions
 
+_anonymized_data_: Anonymized data file
+
 _aug_2020_poster_: Poster detailing work-in-progress as of August 2020, originally created for the 2020 Psych-Summer Poster Session at Stanford University
 
-_bayesian_power_analysis_: Bayesian power analysis for sample size determination
+_bayesian_power_analysis_: Extended Bayesian power analysis for sample size determination
 
 _full_script_: Full script for online studies
 
