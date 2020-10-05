@@ -122,8 +122,6 @@ Parents will also be asked to report their child’s gender, their child’s rac
 
 **13. Sample size (required)**
 
-_NOTE: Edit following Bayesian power analysis for sample size determination._
-
 Our target sample size is N=60 (n=20 in each age category).
 
 **14. Sample size rationale (optional)**
@@ -218,6 +216,8 @@ Not applicable
 We intend to run three Bayesian binomial tests from the BayesianFirstAid package in R to assess whether the proportion of children in each age category who indicate preference for a polite speaker differs significantly from chance. 
 
 ```{r count speaker preference}
+#Create frequency matrix to pull values from when running Bayesian binomial tests.
+
 speaker_matrix <- table(pp_data$age_category, pp_data$speaker_preference)
 print(speaker_matrix)
 ```
@@ -251,7 +251,7 @@ binomial_test2vs4 <- bayes.binom.test(x=speaker_matrix["2","1"], n=speaker_matri
 We will run four more Bayesian binomial tests to assess whether children exhibit shape, color, order, or side bias (i.e. whether the proportion of children overall who indicate preference for the triangle speaker, the square speaker, the red speaker, the yellow speaker, the first speaker, the second speaker, the speaker on the left of the forced-choice, or the speaker on the right of the forced-choice differs significantly from chance).
 
 ```{r count biases}
-#Create frequency matrices to pull values from when running Bayesian binomial tests
+#Create frequency matrices to pull values from when running Bayesian binomial tests.
 
 shape_matrix <- table(pp_data$shape_preference)
 print(shape_matrix)
