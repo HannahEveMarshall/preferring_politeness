@@ -117,6 +117,8 @@ A child will be excluded if:
 4. A non-participant (e.g. the child’s parent or sibling) interjects or interferes by pointing at the screen at any time during the experiment, audibly commenting, or providing a response to either dependent variable measure (DV).
 5. The child fails to provide a response to DV1 after four prompts.
 6. The child is looking away from the screen for at least 25% of the animation.
+7. The child is looking away from the screen during either speaker utterance.
+8. The parent rates the video or audio quality below a 3 out of 5.
 
 Parents will also be asked to report their child’s gender, their child’s race, their child's first language, and whether their child has siblings, which may all be used as covariates in exploratory analyses.
 
