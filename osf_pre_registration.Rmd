@@ -203,9 +203,9 @@ Participants’ age will be the independent variable. Although age is continuous
 
 **17. Measured variables (required)**
 
-We will measure preference between a polite speaker and an impolite speaker by presenting a forced-choice in which the speakers appear on opposite sides of the screen (counterbalanced) and the participant is asked, “Which friend do you want to play with?” (DV1). Pointing, reaching, and verbal answers will be coded equivalently as indication of preference. If a child does not answer, the child will be prompted three more times with analogous wording. If the child does not provide an answer, the session will be concluded.
+We will measure preference between a polite speaker and an impolite speaker by presenting a forced-choice in which the speakers appear on opposite sides of the screen (counterbalanced) and the participant is asked, “Which friend do you want to play with?” (DV1, our key DV). Pointing, reaching, and verbal answers will be coded equivalently as indication of preference. If a child does not answer, the child will be prompted three more times with analogous wording. If the child does not provide an answer, the session will be concluded.
 
-If the child provides an answer, the child will be asked, “Why do you want to play with that friend?” (DV2). If the child does not provide an answer, the child will be prompted twice more.
+If the child provides an answer, the child will be asked, “Why do you want to play with that friend?” (DV2, which may be used in exploratory analyses). If the child does not provide an answer, the child will be prompted twice more.
 
 **18. Indices (optional)**
 
@@ -236,65 +236,10 @@ binomial_test3 <- bayes.binom.test(x=speaker_matrix["3","1"], n=speaker_matrix["
 binomial_test4 <- bayes.binom.test(x=speaker_matrix["4","1"], n=speaker_matrix["4","0"]+speaker_matrix["4","1"], comp.theta=0.5, cred.mass=0.95)
 ```
 
-We also intend to run three additional Bayesian binomial tests to determine whether the proportions of children in each age category who indicate preference for a polite speaker differ significantly from each other. 
-
-```{r Bayesian binomial test 2s vs 3s}
-binomial_test2v3 <- bayes.binom.test(x=speaker_matrix["2","1"], n=speaker_matrix["2","0"]+speaker_matrix["2","1"], comp.theta=mean(pp_data$speaker_preference[pp_data$age_category==3]), cred.mass=0.95)
-```
-
-```{r Bayesian binomial test 3s vs 4s}
-binomial_test3v4 <- bayes.binom.test(x=speaker_matrix["3","1"], n=speaker_matrix["3","0"]+speaker_matrix["3","1"], comp.theta=mean(pp_data$speaker_preference[pp_data$age_category==4]), cred.mass=0.95)
-```
-
-```{r Bayesian binomial test 2s vs 4s}
-binomial_test2vs4 <- bayes.binom.test(x=speaker_matrix["2","1"], n=speaker_matrix["2","0"]+speaker_matrix["2","1"], comp.theta=mean(pp_data$speaker_preference[pp_data$age_category==4]), cred.mass=0.95)
-```
-
-We will run four more Bayesian binomial tests to assess whether children exhibit shape, color, order, or side bias (i.e. whether the proportion of children overall who indicate preference for the triangle speaker, the square speaker, the red speaker, the yellow speaker, the first speaker, the second speaker, the speaker on the left of the forced-choice, or the speaker on the right of the forced-choice differs significantly from chance).
-
-```{r count biases}
-#Create frequency matrices to pull values from when running Bayesian binomial tests.
-
-shape_matrix <- table(pp_data$shape_preference)
-print(shape_matrix)
-
-color_matrix <- table(pp_data$color_preference)
-print(color_matrix)
-
-order_matrix <- table(pp_data$order_preference)
-print(order_matrix)
-
-side_matrix <- table(pp_data$side_preference)
-print(side_matrix)
-```
-
-```{r binomial test shape bias}
-binomial_test_shape <- bayes.binom.test(x=shape_matrix["1"], n=shape_matrix["1"]+shape_matrix["2"], comp.theta=0.5, cred.mass=0.95)
-```
-
-```{r binomial test color bias}
-binomial_test_color <- bayes.binom.test(x=color_matrix["1"], n=color_matrix["1"]+color_matrix["2"], comp.theta=0.5, cred.mass=0.95)
-```
-
-```{r binomial test order bias}
-binomial_test_order <- bayes.binom.test(x=order_matrix["1"], n=order_matrix["1"]+order_matrix["2"], comp.theta=0.5, cred.mass=0.95)
-```
-
-```{r binomial test side bias}
-binomial_test_side <- bayes.binom.test(x=side_matrix["1"], n=side_matrix["1"]+side_matrix["2"], comp.theta=0.5, cred.mass=0.95)
-```
-
-We intend to run two Bayesian logistic regression models from the rstanarm package to:
-
-1. Model speaker preference (DV1) as a function of age.
-2. Model reasoning (DV2, inclusive of reasoning levels 1 - 3) as a function of age.
+We intend to run a Bayesian logistic regression models from the rstanarm package to model speaker preference (DV1) as a function of age.
 
 ```{r DV1 logistic model}
 DV1_model <- stan_glm(speaker_preference~age, family=binomial(), data=pp_data)
-```
-
-```{r DV2 logistic model}
-DV2_model <- stan_glm(filtered_reasoning~age, family=gaussian(), data=pp_data)
 ```
 
 _Key_
@@ -323,8 +268,6 @@ _Key_
 - binomial_test_side: Bayesian binomial test for side bias
 - DV1_model: Bayesian logistic regression model of speaker preference as a function of age
 - age: age
-- DV2_model: Bayesian logistic regression model of reasoning (inclusive of reasoning levels 1 - 3) as a function of age
-- filtered_reasoning: reasoning filtered to include reasoning levels 1 - 3
 
 **20. Transformations (optional)**
 
@@ -361,7 +304,7 @@ Our study will use pairwise deletion. If a child does not complete DV2, their DV
 
 **24. Exploratory analysis (optional)**
 
-Not applicable.
+Not applicable
 
 ### Other
 
