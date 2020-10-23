@@ -37,12 +37,16 @@ print(speaker_matrix)
 ```{r verify data type}
 is.matrix(speaker_matrix)
 ```
+
+```{r Bayesian binomial test}
+binomial_test <- bayes.binom.test(x=speaker_matrix["2","1"]+speaker_matrix["3","1"]+speaker_matrix["4","1"], n=nrow(pp_data), comp.theta=0.5, cred.mass=0.95)
+binomial_test
+```
+
 ```{r Bayesian binomial test 2s}
 binomial_test2 <- bayes.binom.test(x=speaker_matrix["2","1"], n=speaker_matrix["2","0"]+speaker_matrix["2","1"], comp.theta=0.5, cred.mass=0.95)
 binomial_test2
 ```
-
-
 
 ```{r Bayesian binomial test 3s}
 binomial_test3 <- bayes.binom.test(x=speaker_matrix["3","1"], n=speaker_matrix["3","0"]+speaker_matrix["3","1"], comp.theta=0.5, cred.mass=0.95)
