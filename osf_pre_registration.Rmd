@@ -307,7 +307,7 @@ DV1_model <- stan_glm(speaker_preference~age, family=binomial(), data=pp_data)
 _Key_
 
 - speaker_matrix: frequency matrix of speaker preference by age
-- pp_data: Preferring Politeness dataframe
+- pp_data: Preferring Politeness data frame
 - age_category: age grouped by years
 - speaker_preference: speaker preference (0 = impolite, 1 = polite)
 - binomial_test: Bayesian binomial test across age categories
