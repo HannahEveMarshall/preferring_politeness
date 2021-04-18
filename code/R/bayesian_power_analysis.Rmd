@@ -1,0 +1,126 @@
+---
+title: "Preferring Politeness - Bayesian Power Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+```{r load libraries}
+
+library(BayesFactor)
+library(tidybayes)
+library(mgcv)
+library(stringi)
+library(VGAM)
+library(brms)
+library(broom)
+library(glmmfields)
+library(generics)
+library(broom.mixed)
+library(tidyverse)
+
+```
+
+```{r set values}
+N <- 15
+success_probability <- 0.8
+```
+
+```{r simulate data}
+set.seed(3)
+
+sim_data <-tibble(y=rbinom(n=N, size=1, prob=success_probability))
+
+str(sim_data)
+```
+
+```{r model with iterations}
+#"y|trials(1)~1" indicates that each y value corresponds to one trial, representing n=1 of the sample.
+#The prior normal(0, 2) may have to be adjusted.
+
+fit <- brm(data=d, family=binomial, y|trials(1)~1, prior(normal(0,2), class=Intercept), seed=3)
+
+print(fit)
+```
+
+```{r probability metric}
+#Because the intercept is returned as log odds, transform it to a probability metric.
+
+inv_logit_scaled(fixef(fit)["Intercept", 1])
+```
+
+```{r all draws}
+#Extract all the posterior draws and transform them from log odds to probability metrics.
+
+probability_draws <- posterior_samples(fit) %>% 
+  transmute(p=inv_logit_scaled(b_Intercept))
+
+probability_draws
+```
+```{r visualize}
+  ggplot(probability_draws, aes(x=p)) +
+  geom_density(fill="grey30") +
+  labs(title="Density of probability of selecting a polite speaker", x="Probability of selecting a polite speaker") +
+  scale_x_continuous(limits=c(0, 1)) +
+  scale_y_continuous(NULL, breaks=NULL) +
+  theme_classic()
+```
+
+```{r intervals}
+#Calculate the posterior median and 95% credible interval.
+
+median_qi(probability_draws)
+```
+
+```{r simulation function}
+sim_function <- function(seed, n_participants) {
+  
+  n_trials <- 1
+  prob_hit <- success_probability
+  
+  set.seed(seed)
+  
+  sim_data <- tibble(y = rbinom(n = n_participants, size = n_trials, prob = prob_hit))
+  
+  update(fit, newdata = sim_data, seed = seed) %>% 
+  posterior_samples() %>% 
+  transmute(p = inv_logit_scaled(b_Intercept)) %>% 
+  median_qi() %>% 
+  select(.lower:.upper)
+  
+}
+```
+
+```{r run simulation function}
+#Argument "seed" should be set to 1:1000+ but is temporarily set to 1:10 for ease running simulation while editing code. 
+
+iterations <- 
+  tibble(seed=1:10) %>% 
+  mutate(ci=map(seed, sim_funtion, n_participants=N)) %>% 
+  unnest(cols=c(ci))
+```
+
+```{r visualize results}
+#Most of our 95% intervals should not cross the null value p = 0.5.
+
+iterations %>% 
+  ggplot(aes(x = .lower, xend = .upper, y = seed, yend = seed)) +
+  geom_vline(xintercept = 0.5, color = "red", linetype = 2) +
+  geom_segment(color = "blue") +
+  scale_x_continuous("probability space", limits = c(0, 1))
+```
+
+```{r power}
+#In rejecting the null hypothesis of p = 0.5, we need to ensure 0.5 is never between the lower and upper limits of our 95% intervals. Conditions where .upper < 0.5 and conditions where .lower > 0.5 always reject the null hypothesis.
+
+null <- 0.5
+
+iterations %>% 
+  mutate(reject_the_null = null < .lower | null > .upper) %>% 
+  summarise(power = mean(reject_the_null))
+```
+
