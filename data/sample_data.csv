@@ -1,4 +1,4 @@
-subject,subject_id,video_id,age_category,animation,age,race,gender,first_language,proportion_english,clinical_population,interference,speaker_preference,reasoning,shape_preference,color_preference,order_preference,side preference,attentiveness,consent_level,video_quality,audio_quality,engagement,siblings,notes
+subject,subject_id,video_id,age_category,animation,age,race,gender,first_language,proportion_english,clinical_population,interference,speaker_preference,reasoning,shape_preference,color_preference,order_preference,side_preference,attentiveness,consent_level,video_quality,audio_quality,engagement,siblings,notes
 1,ob323,1_ob323,2,16,2.55,Asian/Indian,male,English,not reported,no,no,impolite,superficial,square,red,second,left,TRUE,1,4,5,4,no,
 2,ob340,2_ob340,2,2,2.13,White,male,English,all of the time,no,no,none,none,none,none,none,none,TRUE,2,5,5,3,no,
 3,ob333,3_ob333,2,3,2.64,White,male,English,all of the time,no,CHECK,polite,none,triangle,red,second,right,TRUE,1,5,5,5,no,
@@ -38,7 +38,7 @@ subject,subject_id,video_id,age_category,animation,age,race,gender,first_languag
 37,oc527,37_oc527,3,7,3.47,"Black/African, Hispanic/Latinx, Native American, White",female,English,most of the time,no,no,impolite,none,triangle,red,second,right,TRUE,3,5,4.5,4,,
 38,oc542,38_oc542,3,1,3.81,Asian,male,Hindi,all of the time,no,no,impolite,superficial,square,yellow,second,right,TRUE,3,5,5,5,,consent with conditions
 39,oc391,39_oc391,3,5,3.16,White,male,English,all of the time,no,no,none,none,none,none,none,none,TRUE,3,5,5,4,,
-40,elizabeth,,3,14,,,,,,,,,,,,,,FALSE,,,,,,
+40,,,3,14,,,,,,,,,,,,,,FALSE,,,,,,
 41,ob009,41_ob009,4,11,4.36,Hispanic/Latinx,female,Spanish,most of the time,no,no,polite,logical,square,red,second,right,TRUE,1,4,5,5,yes,
 42,ob238,42_ob238,4,12,4.95,White,male,English,all of the time,no,no,impolite,superficial,triangle,yellow,first,right,TRUE,3,4,4,4,,
 43,ob018,43_ob018,4,1,4.76,"Asian, White",male,English,all of the time,no,no,polite,none,triangle,red,first,left,TRUE,3,5,5,5,yes,
@@ -58,4 +58,4 @@ subject,subject_id,video_id,age_category,animation,age,race,gender,first_languag
 57,oc506,57_oc506,4,13,4.4,Asian,female,Mandarin Chinese,most of the time,no,no,polite,superficial,triangle,yellow,second,right,TRUE,2,3,4,4,yes,
 58,oc412,58_oc412,4,8,4.16,White,female,English,most of the time,no,no,polite,superficial,square,yellow,first,right,TRUE,3,5,5,5,,
 59,ob725,59_ob725,4,11,3.99,White,female,English,all of the time,no,no,polite,logical,square,red,second,right,TRUE,2,5,5,not reported,,
-60,harris,,4,2,,,,,,,,,,,,,,FALSE,,,,,,
+60,oc454,60_oc454,4,2,4.92,Asian,male,Mandarin,most of the time,no,no,polite,superficial,triangle,red,first,right,TRUE,2,5,5,4,,"gave superficial reasoning but after the debrief, asked why the blue circle gave the other shape a cookie even though it didn't say please"
