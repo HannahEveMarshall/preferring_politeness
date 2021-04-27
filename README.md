@@ -35,6 +35,7 @@ Adults routinely demonstrate social sensitivity by utilizing polite speech. But 
   * _anonymized_data_: Anonymized data file
 * **figures**:
   * **diagrams**:
+    * _contextual_considerations_: Diagram illustrating the considerations made when selecting a polite utterance
   * **plots**:
   * **tables**:
 * **materials**:
@@ -71,14 +72,9 @@ Adults routinely demonstrate social sensitivity by utilizing polite speech. But 
   * _thomas2019_: Thomas & Sarnecka, 2019
   * _vergis2020_: Vergis & Pell, 2020
   * _yoon2019_: Yoon & Frank, 2019
-  * _yoonpress_: Yoon et al., in press
+  * _yoon2020_: Yoon et al., 2020
 * **posters**:
   * _aug_2020_poster_: Poster detailing work-in-progress as of August 2020, originally created for the 2020 Psych-Summer Poster Session at Stanford University
 * **presentation**:
 * **writeup**:
 * _miscellaneous_: Miscellaneous/compiling document (likely the least up-to-date document)
-
-
-
-
-
