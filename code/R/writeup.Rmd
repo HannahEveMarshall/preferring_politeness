@@ -183,8 +183,6 @@ Two-tailed tests will be used for each of our analyses. All data-based outliers 
 
 We will make inferences based on credible intervals, using a 95% credible interval criterion for success.
 
-# Results
-
 ```{r load_data, echo = F}
 pp_data = read.csv("C:/Users/Hannah/Desktop/preferring_politeness/data/raw_data.csv")
 ```
@@ -339,28 +337,30 @@ set.seed(2)
 DV1_model = stan_glm(speaker_preference~age, 
                      family = binomial(), 
                      data = pp_data)
+DV1_model
 ```
 
-```{r visualize_1, echo = F, fig.cap = 'Each point represents an individual observation. Points have been jittered slightly (by .03) for readability. Black line represents a logistic regression.'}
-set.seed(2)
+```{r visualization_1, echo = F, fig.cap = 'Each point represents an individual observation. Points have been jittered slightly (by .03 vertically) for readability. Black line represents a logistic regression.'}
+set.seed(3)
 
 DV1.y.fit <- fitted(DV1_model)
 
 ggplot(pp_data, 
        aes(x = age)) +
-  geom_jitter(aes(y = speaker_preference,
-                  col = age_category),
-              size = 3, 
-              height = 0.03, 
-              alpha = 0.5) +
+  geom_point(aes(y = speaker_preference,
+                 col = age_category),
+             position = position_jitter(width = 0, 
+                                        height = .03),
+             size = 3,
+             alpha = 0.5) +
   scale_color_gradient(low = "blue",
-                        high = "red") +
+                       high = "red") +
   geom_smooth(mapping = aes(y = fitted(DV1_model)),
               size = 1,
               alpha = 0.5,
               color = "black") +
   theme(legend.position = "none") +
-  ylim(0, 1) +
+  ylim(-.03, 1.03) +
   labs(title = "Probability of indicating preference for a polite speaker as a function of age",
        x = "Age (years)", 
        y = "Probability of indicating preference for a polite speaker")
@@ -394,14 +394,49 @@ pp_data %>%
                       high = "red") +
   theme(legend.position = "none") +
   ylim(0, 1) +
-  labs(title = "Probability of indicating preference for a polite speaker as a function of age category",
+  labs(title = "Probability of indicating preference for a polite speaker by age category",
        x = "Age category (years)", 
        y = "Probability of indicating preference for a polite speaker")
 
 ggsave(filename = "vis2.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
 ```
+# Results
+
+We assessed whether the proportion of children in our sample who indicated preference for a polite speaker differed from chance using a Bayesian binomial test. We 58% of our entire sample indicated preference for a polite speaker.
+
+A logistic regression predicting speaker preference based on age showed a slightly positive--but not substantial--overall effect of age: Every 12-month increase in age predicted an increase of .1 in the probability that a child will indicate preference for a polite speaker.
+
+Our data showed much more variation than was captured by our logistic regression (Figure 1). To capture this variation, we faceted out data by age category (two-year-old, three-year-old, and four-year-old children), and we assessed whether the proportion of children in each age category who indicated preference for a polite speaker differed from chance using additional Bayesian binomial tests. 65% of two-year-old children, 36% of three-year-old children, and 69% of four-year-old children indicated preference for a polite speaker.
+
 # Exploratory Analyses
 
 # Discussion
+
+1. Replicated prior research where four-year-old children reliably indicated preference for a polite speaker, but three-year-old children did not (Yoon).
+
+2. But showed that two-year-olds can also do this!
+
+3. Performance of two-year-old children is comparable to the performance of four-year-olld children, indicating that there is not a substantial developmental "improvement" between two and four years: All the cognitive capacities that goes into identifying polite language, forming an opinion about the speaker, and indicating a preference based on that is present at 2 years old.
+
+4. Three-year-old children performed much differently than expected, showing a slight preference for the impolite speaker.
+
+    - Could be that 3-year-olds are just performing at chance. At this age, children start preschool, things like shape, color, object-referent language become salient, and things like social evaluation may be lost in the background.
+            - By 4 years, children have developed a plethora of vocabulary and social evaluation, once again, become pertinent to assessing, engaging with, and relating to the people and world around them.
+            
+    - Or could be that children may actually be preferring the impolite speaker. 
+            - There is vast and string evidence that young children prefer--and choose-- toys which function and characters who behave unexpectedly (...; ...). At two, children may recognize polite language as prosocial, and therefore prefer it; but, at three, children might be more interested in exploring the social world and thus, pick the character whose utterance is the least expected. 
+            - A handful of the children giggled after the impolite speaker made its utterance. Some even credited their choice to the fact that the speaker was "funny" or "silly". Anecdotally, young children are much less upset by other's words. If this is what the children are picking up on, they may be choosing the speaker that says something entertaining.
+            
+## Limitations
+
+- Context in stimuli is actually quite foreign to many children. From a very young age, if a child asks for something nicely, they get the thing, and if they ask for something rudely, they will be corrected by an adult (e.g., "What do you say?" or "What's the magic word?"). In our animation, both the polite character and impolite character's wishes were granted. This may have exacerbated any effect that was due to the unexpectedness of the impolite speaker.
+
+- Because politeness is so broad, this study and specific scenario really only gets at children's preference for a polite speaker in a very small portion of polite phenomena
+
+## Future directions
+
+- Replicate results
+- Study a broader range of scenarios involving politeness
+- Study other aspects of politeness
 
 # References
