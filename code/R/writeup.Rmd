@@ -1,21 +1,52 @@
 ---
-title: "Preferring Politeness: Young children's implicit understanding of polite language"
-author: "Hannah E. Marshall, Rondeline M. Williams, and Michael C. Frank"
-date: "`r Sys.time()`"
-urlcolor: blue
+title             : "Preferring Politeness: Young children's implicit comprehension of linguistic politeness"
+shorttitle        : "Preferring Politeness"
 
-output:
-  bookdown::pdf_book:
-    toc: true
-    toc_depth: 4
-    highlight: tango
+author: 
+  - name          : "Hannah E. Marshall"
+    affiliation   : "1"
+    corresponding : yes
+    email         : "hannah21@stanford.edu"
 
-bibliography: [references/packages.bib, references/references.bib]
-biblio-style: apalike
-nocite: '@*'
+  - name          : "Rondeline M. Williams"
+    affiliation   : "1"
+    
+  - name          : "Michael C. Frank"
+    affiliation   : "1"
+
+affiliation:
+  - id            : "1"
+    institution   : "Stanford University"
+
+authornote: |
+  All code, data, figures, cited papers, and pre-planned analyses are publicly available at https://github.com/HannahEveMarshall/preferring_politeness. The current study, including all analyses, was registered on OSF prior to data collection: https://osf.io/dz8vp.
+
+abstract: |
+  Adults routinely demonstrate social sensitivity by utilizing polite speech. But when do children begin to comprehend linguistic politeness? Existing literature indicates that basic comprehension of polite speech presents early in development: by 3 years, children accurately judge whether a speaker is more polite, ruder, nicer, or meaner than another based on the speaker’s use of polite speech (Yoon & Frank, 2019). By 4 years, children reliably opt for play partners who use politeness markers; however, previous studies have not observed reliable preference for a polite speaker in children younger than 4 years, potentially due to experimental task demands. This project proposes a less challenging paradigm (adapted from similar shape-preference paradigms, i.e. Hamlin, Wynn, & Bloom, 2007; Thomas & Sarnecka, 2019), which may detect preference for a polite speaker in children younger than 4 years. In addition to informing our understanding of children’s sociolinguistic development, this study aims to demonstrate the effectiveness of a simpler paradigm for future studies of linguistic politeness in young children.
+  
+keywords          : "politeness, language acquisition, pragmatic development, online experiment"
+wordcount         : "X"
+
+bibliography      : ["references/references.bib"]
+
+floatsintext      : yes
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+
 ---
 
-```{r setup, echo = F}
+```{r setup, include = FALSE}
+library("papaja")
+r_refs("references/references.bib")
+
 library(rstanarm)
 library(tidyverse)
 library(dplyr)
@@ -30,27 +61,20 @@ library(LaplacesDemon)
 library(scales)
 library(BayesFactor)
 library(BayesianFirstAid)
-
-knitr::opts_chunk$set(echo = TRUE)
+library(papaja)
 
 theme_set(theme_classic())
-
-knitr::write_bib(.packages(), "references/packages.bib")
 ```
 
-**Note:** All code, data, figures, cited papers, and pre-planned analyses are publicly available at https://github.com/HannahEveMarshall/preferring_politeness. The current study, including all analyses, was registered on OSF prior to data collection: https://osf.io/dz8vp.
+To engage in successful social interactions, an individual must demonstrate social sensitivity. The same individual must assess the social sensitivity of others to determine the desirability of their social partners. The capacity to evaluate individuals on the basis of their social interactions is universal and unlearned [@haidt2004; @hamlin2007; @hauser2006; @pinker2003]. Even preverbal infants develop social preferences based on individuals’ behavior toward others [@hamlin2007]. Through development, humans learn to routinely demonstrate and assess social sensitivity by employing and interpreting linguistic politeness in speech.
 
-# Introduction
+Linguistic politeness can be defined as a set of social behaviors, expressed verbally, which maintain, enhance, or challenge interpersonal relations [@vergis2020]. It is a form of social etiquette, which regulates the choice of communicative forms, structures, and set phrases a person uses [@ryabova2015]. Being polite is considered a part of adult pragmatic competence, and the rules include, Don't impose, Give options, and Make the addressee feel good [@lakoff1973].
 
-To engage in successful social interactions, an individual must demonstrate social sensitivity. The same individual must assess the social sensitivity of others to determine the desirability of their social partners. The capacity to evaluate individuals on the basis of their social interactions is universal and unlearned (Haidt & Joseph, 2004; Hamlin et al., 2007; Hauser, 2006; Pinker, 2002). Even preverbal infants develop social preferences based on individuals’ behavior toward others (Hamlin et al., 2007). Through development, humans learn to routinely demonstrate and assess social sensitivity by employing and interpreting linguistic politeness in speech.
-
-Linguistic politeness can be defined as a set of social behaviors, expressed verbally, which maintain, enhance, or challenge interpersonal relations (Vergis & Pell, 2017). It is a form of social etiquette, which regulates the choice of communicative forms, structures, and set phrases a person uses (Ryabova, 2015). Being polite is considered a part of adult pragmatic competence, and the rules include, Don't impose, Give options, and Make the addressee feel good (Lakoff, 1973).
-
-When speaking politely, individuals typically do not behave rationally in accordance with Gricean Maxims: in fact, polite speech violates theories of effective communication by typically being inefficient and under-informative (Grice, 1975; Yoon et al., in press). Then why speaking politely? A utility-theoretic approach to speech acts suggest that polite speech emerges from a tradeoff between three competing goals of communication: to convey information (informational utility), to be kind (prosocial utility), and to present oneself in a good light (self-presentational utility) (Yoon et al., in press).
+When speaking politely, individuals typically do not behave rationally in accordance with Gricean Maxims: in fact, polite speech violates theories of effective communication by typically being inefficient and under-informative [@grice1975; @yoon2020]. Then why speaking politely? A utility-theoretic approach to speech acts suggest that polite speech emerges from a tradeoff between three competing goals of communication: to convey information (informational utility), to be kind (prosocial utility), and to present oneself in a good light (self-presentational utility) [@yoon2020].
 
 ## Composing a Polite Utterance
 
-Speaking with an appropriate degree of politeness comes intuitively to most adults; however, formulating an adequately polite utterance is a fairly complex process. Ervin-Tripp (1977) asserted that two factors affect the production and comprehension of polite register: knowledge of the linguistic form of polite requests and knowledge of pragmatic request rules within a given social and situational context. Figure 1 expands on these two factors by illustrating what an adult with normative socio-pragmatic competence typically considers before producing a polite utterance.
+Speaking with an appropriate degree of politeness comes intuitively to most adults; however, formulating an adequately polite utterance is a fairly complex process. Ervin-Tripp (1977) asserted that two factors affect the production and comprehension of polite register: knowledge of the linguistic form of polite requests and knowledge of pragmatic request rules within a given social and situational context [-@ervintripp1977]. Figure 1 expands on these two factors by illustrating what an adult with normative socio-pragmatic competence typically considers before producing a polite utterance.
 
 ![Considerations when selecting a polite utterance.](C:/Users/Hannah/Desktop/preferring_politeness/figures/diagrams/contextual_considerations.jpg)
 
@@ -66,128 +90,113 @@ Finally, the person must weigh the cost of their utterance. If the cost is reaso
 
 At each step in this process, the speaker must not only judge the literal meaning of their utterance; they must also predict the listener’s interpretation to ensure that their utterance effectively communicates the intended message. Thus, the production of polite speech can be understood through a Rational Speech Act framework, characterized by recursive reasoning.
 
-According to this framework, the speaker chooses to produce a polite utterance based on their prediction of how a listener would interpret it, and the listener being reasoned about interprets the utterance by reasoning about the speaker's prediction, and so on (Yoon et al., in press).
+According to this framework, the speaker chooses to produce a polite utterance based on their prediction of how a listener would interpret it, and the listener being reasoned about interprets the utterance by reasoning about the speaker's prediction, and so on [@yoon2020].
 
 ## Acquisition of Politeness
 
 Being suitably polite involves masterfully combining an understanding of social and contextual factors with an inventory of linguistic forms. The complexity of this ability brings into question when and how humans being to acquire polite speech.
 
-Production of polite speech begins early in development: At two years old, children modify their requests to adjust politeness (Bates & Silvern, 1977), and at two and a half years old, children produce "please" (Read & Cherry, 1978). By three years old, children are able to vary their utterances based on whether they are instructed to "tell" versus "ask" an addressee to give them a puzzle piece (Bock & Hornsby, 1981). By three years old, children also possess several politeness formulas in their repertoires and use them spontaneously and appropriately quite frequently in their home context (Eisenberg, 1982).
+Production of polite speech begins early in development: At two years old, children modify their requests to adjust politeness [@bates1977], and at two and a half years old, children produce "please" [@read1978]. By three years old, children are able to vary their utterances based on whether they are instructed to "tell" versus "ask" an addressee to give them a puzzle piece [@bock1981]. By three years old, children also possess several politeness formulas in their repertoires and use them spontaneously and appropriately quite frequently in their home context [@eisenberg1982].
 
-Evidence from studies on children’s understanding of politeness indicates that that children understand the implications of polite speech early on: By three years old, English- speaking preschool children can correctly identify whether a person is nicer, meaner, more polite, or less polite than another speaker, based on which speaker includes politeness markers such as "please" in their requests (Yoon & Frank, 2019). By four years old, English-speaking preschool children tend to choose polite speakers as play partners over non-polite speakers and understand that polite speakers are more likely to have their requests granted (Yoon & Frank, 2019). However, previous studies have not observed reliable preference for a polite speaker in children younger than four years, potentially due to experimental task demands (busy stimuli, excessive auditory input, high attention demands, etc.).
+Evidence from studies on children’s understanding of politeness indicates that that children understand the implications of polite speech early on: By three years old, English- speaking preschool children can correctly identify whether a person is nicer, meaner, more polite, or less polite than another speaker, based on which speaker includes politeness markers such as "please" in their requests [@yoon2019]. By four years old, English-speaking preschool children tend to choose polite speakers as play partners over non-polite speakers and understand that polite speakers are more likely to have their requests granted [@yoon2019]. However, previous studies have not observed reliable preference for a polite speaker in children younger than four years, potentially due to experimental task demands (busy stimuli, excessive auditory input, high attention demands, etc.).
 
 ## The Current Study
 
-This study proposes a less challenging task based on existing shape-preference paradigms (Hamlin et al., 2007; Thomas & Sarnecka, 2019), which may detect preference for a polite speaker in children younger than four years. We are testing two-year-old, three-year-old, and four-year-old children’s implicit understanding of linguistic politeness by assessing their preference for a polite speaker over an impolite speaker.
+This study proposes a less challenging task based on existing shape-preference paradigms [@hamlin2007; @thomas2019], which could detect preference for a polite speaker in children younger than four years. We tested two-year-old, three-year-old, and four-year-old children’s implicit understanding of linguistic politeness by assessing their preference for a polite speaker over an impolite speaker.
 
 ### Hypotheses
 
-1. Considering our less challenging task, we predict that two-year-old, three-year-old, and four-year-old children will indicate preference for a polite speaker over an impolite speaker (i.e. the proportion of children in each age category who indicate preference for a polite speaker will differ significantly from chance).
+1. Considering our less challenging task, we predicted that two-year-old, three-year-old, and four-year-old children would indicate preference for a polite speaker over an impolite speaker (i.e. the proportion of children in each age category who indicated preference for a polite speaker would differ from chance).
 
-2. Considering evidence for graded comprehension of politeness in young children (Yoon & Frank, 2019), we predict that children will indicate preference for a polite speaker over an impolite speaker more reliably (i.e. with a stronger effect) with increasing age.
+2. Considering evidence for graded comprehension of politeness in young children [@yoon2019], we predicted that children would indicate preference for a polite speaker over an impolite speaker more reliably (i.e. with a stronger effect) with increasing age.
 
 # Methods
 
 ## Participants
 
-Participants include two-year old (n = 20), three-year-old (n = 20), and four-year-old (n = 20)	children living in the U.S. at the time of data collection. Participants are recruited through the Department of Psychology at Stanford University through Facebook advertisements, Children Helping Science (an online recruitment platform for developmental research), and direct outreach to preschools and daycares in the Bay Area.
+Participants included two-year old (n = 20), three-year-old (n = 20), and four-year-old (n = 20)	children living in the U.S. at the time of data collection. Participants were recruited through the Department of Psychology at Stanford University through Facebook advertisements, Children Helping Science (an online recruitment platform for developmental research), and direct outreach to preschools and day cares in the Bay Area.
 
-We selected our sample size based on a Bayesian power analysis conducted in R (see OSF registration for code). Our lowest-power tests were by-age-category Bayesian binomial tests. To detect an effect in which 80% of children indicate preference for a polite speaker with 80% power and a 95% credible interval, we must run 15 participants in each age category (45 total). We are running 60 participants to compensate for exclusions and missing data. A second power analysis showed that with 60 participants, across age categories, we could detect an effect in which 70% of children indicate preference for a polite speaker with 80% power and a 95% credible interval.
+We selected our sample size based on a Bayesian power analysis conducted in R. Our lowest-power tests were by-age-category Bayesian binomial tests. To detect an effect in which 80% of children indicate preference for a polite speaker with 80% power and a 95% credible interval, we had to run 15 participants in each age category (45 total). We ran 60 participants to compensate for exclusions and missing data. A second power analysis showed that with 60 participants, across age categories, we could detect an effect in which 70% of children indicate preference for a polite speaker with 80% power and a 95% credible interval.
 
-A child is excluded from the study if:
+We excluded a child from the study if:
 
-1.	The child is known to have any cognitive, auditory, or visual impairment, and the impairment is reported by the parent.
+1.	The child was known to have any cognitive, auditory, or visual impairment, and the impairment was reported by the parent.
 
-2.	The child is known to have any neurodevelopmental disorder that significantly affects cognitive processing or social cognition, such as down syndrome or autism spectrum disorder, and the disorder is reported by the parent. Attention deficit disorder and attention deficit hyperactivity disorder are only grounds for exclusion if the child is unable to adequately complete test trials due to inattention or restlessness as per criterion 6.
+2.	The child was known to have any neurodevelopmental disorder that significantly affects cognitive processing or social cognition, such as down syndrome or autism spectrum disorder, and the disorder was reported by the parent. Attention deficit disorder and attention deficit hyperactivity disorder were only grounds for exclusion if the child was unable to adequately complete test trials due to inattention or restlessness as per criterion 6.
 
-3.	The child does not hear English “all of the time” or “most of the time” as indicated by the parent upon registration.
+3.	The child did not hear English “all of the time” or “most of the time” as indicated by the parent upon registration.
 
-4.	A non-participant (e.g. the child’s parent or sibling) interjects or interferes by pointing at the screen at any time during the experiment, audibly commented, or providing a response to either dependent variable measure (DV).
+4.	A non-participant (e.g. the child’s parent or sibling) interjected or interfered by pointing at the screen at any time during the experiment, audibly commenting, or providing a response to either dependent variable measure (DV).
 
-5.	The child fails to provide a response to DV1 after four prompts.
+5.	The child failed to provide a response to DV1 after four prompts.
 
-6.	The child is looking away from the screen for at least 25% of the animation.
+6.	The child was looking away from the screen for at least 25% of the animation.
 
-7.	The child is looking away from the screen during either speaker utterance.
+7.	The child was looking away from the screen during either speaker utterance.
  
-8.	The parent rates the video or audio quality below a 3 out of 5.
+8.	The parent rated the video or audio quality below a 3 out of 5.
 
-Parents are also asked to report their child’s gender, their child’s race, their child's first language, and whether their child has siblings. These data may be used in exploratory analyses.
+Based on these criteria, we excluded five children: two 2-year-old children and three 3-year-old children.
 
 ## Stimuli
 
-The animation begins with a (secondary) familiarization phase in which a shape (the speaker) enters from the left of the screen, spots two cookies on the opposite side of the screen, gasps excitedly, approaches the cookies, eats one cookie, and celebrates by jumping up and down. This phase informs the participant that the speaker’s goal is to eat a cookie.
+The animation began with a (secondary) familiarization phase in which a shape (the speaker) entered from the left of the screen, spotted two cookies on the opposite side of the screen, gasped excitedly, approached the cookies, ate one cookie, and celebrated by jumping up and down. The purpose of this phase was to inform the participant that the speaker’s goal was to eat a cookie.
 
-A testing phase follows in which the speaker enters from the left of the screen and stops in front of another shape (the listener), who is standing in the way of the cookies. In the polite condition, the speaker says, “I am so hungry! May I have a cookie please?” In the impolite condition, the speaker says, “I am so hungry! Give me a cookie now.” Regardless of condition, the listener moves out of the speaker’s way. The speaker gasps excitedly, crosses in front of the listener, approaches the cookies, eats one cookie, and celebrates by jumping up and down.
+A testing phase followed in which the speaker entered from the left of the screen and stopped in front of another shape (the listener), who was standing in the way of the cookies. In the polite condition, the speaker said, “I am so hungry! May I have a cookie please?” In the impolite condition, the speaker said, “I am so hungry! Give me a cookie now.” Regardless of condition, the listener moved out of the speaker’s way. The speaker gasped excitedly, crossed in front of the listener, approached the cookies, ate one cookie, and celebrated by jumping up and down.
 
 Utterances used in the animation were prerecorded. Intonation was naturalistic and did not include exaggerated “polite” or “impolite” prosody. Utterances were cleaned using Audacity (an audio editing and recording software) and RMS was standardized across conditions using Praat (a phonetics software).
 
-The background consists of a solid, green block and solid, blue block depicting grass and sky. The listener is always a blue circle. The polite and impolite speakers consist of either a red triangle and yellow square or a yellow triangle and red square. The shape of the speaker (triangle/square), color of the shape (red/yellow), and order of the conditions (first/second) are counterbalanced across trials.
+The background consisted of a solid, green block and solid, blue block depicting grass and sky. The listener was always a blue circle. The polite and impolite speakers consisted of either a red triangle and yellow square or a yellow triangle and red square. The triangle and square were the same height and width. The shape of the speaker (triangle/square), color of the shape (red/yellow), and order of the conditions (first/second) were counterbalanced across trials.
 
 ## Randomization
 
-A generic list randomizer was used to assign the first 16 participants in each age category to one of 16 unique animations (without repeats), which accounted for all necessary counterbalanced conditions. The same generic list randomizer was used to assign the remaining 4 participants in each age category to one of the 16 unique animations (without repeats).
+A generic list randomizer was used to assign the first 16 participants in each age category to one of 16 uniquely counterbalanced animations (without repeats). The same generic list randomizer was used to assign the remaining 4 participants in each age category to one of the 16 animations (without repeats).
 
 ## Procedure
 
-Children complete the study on their family’s home or personal computers with an experimenter online via Zoom (a videotelephony software). A parent must provide either written consent via email or verbal consent prior to testing. The attending parent is notified that they or their child may stop participation at any time. Testing sessions are recorded with parental consent. Each session begins by testing audio quality and calibrating the participant’s screen settings.
+Children completed the study on their family’s home or personal computers with an experimenter online via Zoom (a videotelephony software). A parent had to provide either written consent via email or verbal consent prior to testing. The attending parent was notified that they or their child may stop participation at any time. Testing sessions were recorded with parental consent. Each session began by testing audio quality and calibrating the participant’s screen settings.
 
-The experimenter begins with a warm-up activity to build rapport with the child. The experimenter plays a short "I-Spy" game with the child, during which a black and white dog emerge from behind a pile of leaves, then a brown squirrel emerges from the same pile. The animals are front-facing and centered, and the pile of leaves is symmetrical to avoid inducing side bias.
+The experimenter began with a warm-up activity to build rapport with the child. The experimenter played a short "I-Spy" game with the child, during which a black and white dog emerged from behind a pile of leaves, then a brown squirrel emerged from the same pile. To avoid inducing side bias, the animals were front-facing and centered, and the pile of leaves was symmetrical.
 
-Next, the experimenter introduces the child to a green pentagon with eyes and a mouth to indicate animateness. The experimenter then shows the child what the character looks like when it “feels very sad” (downturned mouth), “feels normal” (flat-line mouth), and “feels very happy” (upturned, open mouth). The purpose of this primary familiarization phase is to introduce shapes as animate characters and to accustom the participant to facial expressions that are used in the upcoming animation.
+Next, in the primary familiarization, the experimenter introduced the child to a green pentagon, which had eyes and a mouth to indicate animacy. The experimenter then showed the child what the character looks like when it “feels very sad” (downturned mouth), “feels normal” (flat-line mouth), and “feels very happy” (upturned, open mouth). The purpose of this primary phase was to introduce shapes as animate characters and to accustom the participant to facial expressions that would be seen in the upcoming animation.
  
-After this primary familiarization phase, the animation is played. Each participant sees both the polite condition and the impolite condition as detailed above. The experimenter is not blind to condition but bares a blank expression and looks down while the animation is playing. At the end of the animation, the caregiver attending to the child is asked to close their eyes before the child’s preference and reasoning are assessed.
-We measure preference between a polite speaker and an impolite speaker by presenting a forced-choice in which the speakers appear on opposite sides of the screen (counterbalanced) and the participant is asked, “Which friend do you want to play with?” (DV1, our key DV).
+After the primary familiarization phase, the animation was played. Each participant saw both the polite condition and the impolite condition as detailed above. The experimenter was not blind to condition but bared a blank expression and looked down while the animation was playing. At the end of the animation, the caregiver attending to the child was asked to close their eyes before the child’s preference and reasoning were assessed.
 
-Pointing, reaching, and verbal answers are coded equivalently as indication of preference. If a child does not answer, the child is prompted three more times with analogous wording. If the child does not provide an answer, the session is concluded.
+We measured preference between a polite speaker and an impolite speaker by presenting a forced-choice in which the speakers appear on opposite sides of the screen (counterbalanced) and the participant was asked, “Which friend do you want to play with?” (DV1, our key dependent variable measure).
 
-If the child provides an answer, the child is asked, “Why do you want to play with that friend?” (DV2, which may be used in exploratory analyses). If the child does not provide an answer, the child is prompted twice more.
+Pointing, reaching, and verbal answers were coded equivalently as indication of preference. If a child did not answer, the child was prompted three more times with analogous wording. If the child did not provide an answer after four prompts, the session was concluded. If the child provided an answer, the child was then asked, “Why do you want to play with that friend?” (DV2, a supplementary dependent variable measure). If the child did not provide an answer, the child was prompted twice more.
 
-Including screen setup and debriefing, each session takes 10 to 15 minutes to complete. Children nor parents are financially compensated for participating in the study.
+Including screen setup and debriefing, each session took approximately 10 to 15 minutes to complete. Children nor parents were financially compensated for participating in the study.
 
-## Coding
+## Coding and Inferences
 
-Where age is categorically described, it is coded to consist of three levels:
+Age category was coded to consist of three levels:
 
-*	2-year-olds (2 years, 0 months ⩽ x < 3 years, 0 months)
+*	2-year-olds (2 years, 0 months $\leqslant$ x < 3 years, 0 months)
 
-*	3-year-olds (3 years, 0 months ⩽ x < 4 years, 0 months)
+*	3-year-olds (3 years, 0 months $\leqslant$ x < 4 years, 0 months)
 
-*	4-year-olds (4 years, 0 months ⩽ x < 5 years, 0 months)
+*	4-year-olds (4 years, 0 months $\leqslant$ x < 5 years, 0 months)
 
-DV1 (preference) is dummy coded with preference for the polite speaker as 1 and preference for the impolite speaker as 0.
+DV1 was dummy coded with preference for the polite speaker as 1 and preference for the impolite speaker as 0. DV2 was coded to include:
 
-DV2 is coded to include:
+* No reasoning: no explanation after a third prompt (e.g., silence, shrugging, or “I don’t know”).
 
-1.	No reasoning: no explanation after a third prompt (e.g. silence, shrugging, or “I don’t know”).
+* Superficial reasoning: any explanation regarding elements besides speaker utterance (e.g., “I like him”, "He's red", "Triangles are my favorite").
 
-2.	Superficial reasoning: any explanation regarding elements besides speaker utterance (e.g. “I like him”, "He's red", "Triangles are my favorite").
+*	Logical reasoning: any explanation that refers to speaker utterance and is consistent with the animation (e.g., describing the polite speaker as “nice” or “polite”).
 
-3.	Logical reasoning: any explanation that refers to speaker utterance and is consistent with the animation (e.g. describing the polite speaker as “nice” or “polite”).
+*	Other reasoning: any explanation that does not fall under classifications 1 – 3 (e.g., an intelligible response).
 
-4.	Other reasoning: any explanation that does not fall under classifications 1 – 3.
-
-## Analyses
-
-After data collection is complete, we will run a Bayesian binomial test from the BayesianFirstAid package in R to assess whether the proportion of children in our sample who indicated preference for a polite speaker differed from chance.
-
-We will run three more Bayesian binomial tests from the BayesianFirstAid package in R to assess whether the proportion of children in each age category who indicated preference for a polite speaker differed from chance.
-
-We will also run a Bayesian logistic regression models from the rstanarm package to model speaker preference (DV1) as a function of age.
-
-Our study will use pairwise deletion. If a child does not complete DV2, their DV1 data will be included in analyses. If a child does not complete DV1, that child will be excluded from analyses.
+Our study utilized pairwise deletion: If a child did not complete DV2, their DV1 data was still included in analyses. We included all data-based outliers in our analyses.
  
-Two-tailed tests will be used for each of our analyses. All data-based outliers will be included in analyses.
+Two-tailed tests were used for each of our analyses. We made inferences based on credible intervals, using a 95% credible interval criterion for success.
 
-## Inferences
-
-We will make inferences based on credible intervals, using a 95% credible interval criterion for success.
-
-```{r load_data, echo = F}
+```{r load_data, include = F}
 pp_data = read.csv("C:/Users/Hannah/Desktop/preferring_politeness/data/raw_data.csv")
 ```
 
-```{r wrangling, echo = F}
+```{r wrangling, include = F}
 pp_data$speaker_preference[pp_data$speaker_preference == "polite"] = 1
 pp_data$speaker_preference[pp_data$speaker_preference == "impolite"] = 0
 
@@ -217,17 +226,17 @@ pp_data <- pp_data %>%
 View(pp_data)
 ```
 
-```{r count_speaker_preference, echo = F}
+```{r count_speaker_preference, include = F}
 speaker_matrix <- table(pp_data$age_category, 
                         pp_data$speaker_preference)
 print(speaker_matrix)
 ```
 
-```{r verify_data_type, echo = F}
+```{r verify_data_type, include = F}
 is.matrix(speaker_matrix)
 ```
 
-```{r binomial_test, echo = F}
+```{r binomial_test, include = F}
 binomial_test = bayes.binom.test(x = speaker_matrix["2","1"] + speaker_matrix["3","1"] + speaker_matrix["4","1"], 
                                   n = nrow(pp_data), 
                                   comp.theta = .5, 
@@ -235,7 +244,7 @@ binomial_test = bayes.binom.test(x = speaker_matrix["2","1"] + speaker_matrix["3
 binomial_test
 ```
 
-```{r binomial_test_2, echo = F}
+```{r binomial_test_2, include = F}
 binomial_test2 = bayes.binom.test(x = speaker_matrix["2","1"],
                                   n = speaker_matrix["2","0"] + speaker_matrix["2","1"],
                                   comp.theta = .5,
@@ -243,7 +252,7 @@ binomial_test2 = bayes.binom.test(x = speaker_matrix["2","1"],
 binomial_test2
 ```
 
-```{r binomial_test_3, echo = F}
+```{r binomial_test_3, include = F}
 binomial_test3 = bayes.binom.test(x = speaker_matrix["3","1"],
                                   n = speaker_matrix["3","0"] + speaker_matrix["3","1"], 
                                   comp.theta = .5, 
@@ -251,7 +260,7 @@ binomial_test3 = bayes.binom.test(x = speaker_matrix["3","1"],
 binomial_test3
 ```
 
-```{r binomial_test_4, echo = F}
+```{r binomial_test_4, include = F}
 binomial_test4 = bayes.binom.test(x = speaker_matrix["4","1"],
                                   n = speaker_matrix["4","0"] + speaker_matrix["4","1"], 
                                   comp.theta = .5, 
@@ -259,33 +268,7 @@ binomial_test4 = bayes.binom.test(x = speaker_matrix["4","1"],
 binomial_test4
 ```
 
-```{r binomial_test_2v3, echo = F}
-binomial_test2v3 = bayes.binom.test(x = speaker_matrix["2","1"],
-                                  n = speaker_matrix["2","0"] + speaker_matrix["2","1"],
-                                  comp.theta = mean(pp_data$speaker_preference[pp_data$age_category == 3]),
-                                  cred.mass = .95)
-binomial_test2v3
-```
-
-```{r binomial_test3v4, echo = F}
-binomial_test3v4 = bayes.binom.test(x = speaker_matrix["3","1"],
-                                     n = speaker_matrix["3","0"] + speaker_matrix["3","1"],
-                                     comp.theta = mean(pp_data$speaker_preference[pp_data$age_category == 4]), 
-                                     cred.mass = .95)
-binomial_test3v4
-```
-
-```{r binomial_test_2v4, echo = F}
-binomial_test2v4 = bayes.binom.test(x = speaker_matrix["2","1"],
-                                    n = speaker_matrix["2","0"] + speaker_matrix["2","1"],
-                                    comp.theta = mean(pp_data$speaker_preference[pp_data$age_category == 4]),
-                                    cred.mass = .95)
-binomial_test2v4
-```
-
-```{r count_biases, echo = F}
-# Create frequency matrices to pull values from when running binomial tests
-
+```{r count_biases, include = F}
 shape_matrix = table(pp_data$shape_preference)
 print(shape_matrix)
 
@@ -299,7 +282,7 @@ side_matrix = table(pp_data$side_preference)
 print(side_matrix)
 ```
 
-```{r binomial_test_shape, echo = F}
+```{r binomial_test_shape, include = F}
 binomial_test_shape = bayes.binom.test(x = shape_matrix["1"], 
                                        n = shape_matrix["0"] + shape_matrix["1"], 
                                        comp.theta = .5, 
@@ -307,7 +290,7 @@ binomial_test_shape = bayes.binom.test(x = shape_matrix["1"],
 binomial_test_shape
 ```
 
-```{r binomial_test_color, echo = F}
+```{r binomial_test_color, include = F}
 binomial_test_color = bayes.binom.test(x = color_matrix["1"], 
                                        n = color_matrix["0"] + color_matrix["1"], 
                                        comp.theta = 0.5, 
@@ -315,7 +298,7 @@ binomial_test_color = bayes.binom.test(x = color_matrix["1"],
 binomial_test_color
 ```
 
-```{r binomial_test_order, echo = F}
+```{r binomial_test_order, include = F}
 binomial_test_order = bayes.binom.test(x = order_matrix["1"], 
                                        n = order_matrix["0"] + order_matrix["1"], 
                                        comp.theta = .5, 
@@ -323,7 +306,7 @@ binomial_test_order = bayes.binom.test(x = order_matrix["1"],
 binomial_test_order
 ```
 
-```{r binomial test side bias, echo = F}
+```{r binomial test side bias, include = F}
 binomial_test_side = bayes.binom.test(x = side_matrix["1"], 
                                       n = side_matrix["0"] + side_matrix["1"], 
                                       comp.theta = .5, 
@@ -331,16 +314,26 @@ binomial_test_side = bayes.binom.test(x = side_matrix["1"],
 binomial_test_side
 ```
 
-```{r DV1_logisitc_regression, echo = F}
+```{r DV1_logisitc_regression, include = F}
 set.seed(2)
 
-DV1_model = stan_glm(speaker_preference~age, 
+DV1_model = stan_glm(speaker_preference ~ age, 
                      family = binomial(), 
                      data = pp_data)
 DV1_model
 ```
 
-```{r visualization_1, echo = F, fig.cap = 'Each point represents an individual observation. Points have been jittered slightly (by .03 vertically) for readability. Black line represents a logistic regression.'}
+# Results
+
+After data collection was complete, we will run a Bayesian binomial test from the BayesianFirstAid package in R to assess whether the proportion of children in our sample who indicated preference for a polite speaker differed from chance.
+
+We assessed whether the proportion of children in our sample who indicated preference for a polite speaker differed from chance using a Bayesian binomial test. We 58% of our entire sample indicated preference for a polite speaker.
+
+A logistic regression predicting speaker preference based on age showed a slightly positive--but not substantial--overall effect of age: Every 12-month increase in age predicted an increase of .1 in the probability that a child will indicate preference for a polite speaker.
+
+Our data showed much more variation than was captured by our logistic regression (Figure 2). To capture this variation, we faceted out data by age category (two-year-old, three-year-old, and four-year-old children), and we assessed whether the proportion of children in each age category who indicated preference for a polite speaker differed from chance using additional Bayesian binomial tests. 65% of two-year-old children, 36% of three-year-old children, and 69% of four-year-old children indicated preference for a polite speaker.
+
+```{r echo = F, warning = F, message = F, fig.cap = 'Each point represents an individual observation. Points have been jittered slightly (by .03 vertically) for readability. Black line represents a logistic regression.'}
 set.seed(3)
 
 DV1.y.fit <- fitted(DV1_model)
@@ -361,15 +354,14 @@ ggplot(pp_data,
               color = "black") +
   theme(legend.position = "none") +
   ylim(-.03, 1.03) +
-  labs(title = "Probability of indicating preference for a polite speaker as a function of age",
+  labs(title = "Probability of indicating preference for a polite speaker by age",
        x = "Age (years)", 
        y = "Probability of indicating preference for a polite speaker")
 
 ggsave(filename = "vis1.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
 ```
 
-```{r visualization_2, echo = F, fig.cap = 'Each bar illustrates the mean response of participants in each age category, which is representative of the probability of indicating preference for a polite speaker. Error bars represent 95% credible intervals based on Bayesian binomial tests.'}
-
+```{r echo = F, warning = F, message = F, fig.cap = 'Each bar illustrates the mean response of participants in each age category, which is representative of the probability of indicating preference for a polite speaker. Error bars represent 95% credible intervals based on Bayesian binomial tests.'}
 pp_data %>% 
   mutate(lower_ci_calc = if_else(age_category == 2, .43,
                                  ifelse(age_category == 3, .16,
@@ -400,15 +392,6 @@ pp_data %>%
 
 ggsave(filename = "vis2.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
 ```
-# Results
-
-We assessed whether the proportion of children in our sample who indicated preference for a polite speaker differed from chance using a Bayesian binomial test. We 58% of our entire sample indicated preference for a polite speaker.
-
-A logistic regression predicting speaker preference based on age showed a slightly positive--but not substantial--overall effect of age: Every 12-month increase in age predicted an increase of .1 in the probability that a child will indicate preference for a polite speaker.
-
-Our data showed much more variation than was captured by our logistic regression (Figure 1). To capture this variation, we faceted out data by age category (two-year-old, three-year-old, and four-year-old children), and we assessed whether the proportion of children in each age category who indicated preference for a polite speaker differed from chance using additional Bayesian binomial tests. 65% of two-year-old children, 36% of three-year-old children, and 69% of four-year-old children indicated preference for a polite speaker.
-
-# Exploratory Analyses
 
 # Discussion
 
@@ -435,8 +418,19 @@ Our data showed much more variation than was captured by our logistic regression
 
 ## Future directions
 
+- Restate findings
+- Implications
+
+In future:
 - Replicate results
 - Study a broader range of scenarios involving politeness
 - Study other aspects of politeness
 
 # References
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup

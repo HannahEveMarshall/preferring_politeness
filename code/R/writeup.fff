@@ -1,0 +1,21 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{C:/Users/Hannah/Desktop/preferring_politeness/figures/diagrams/contextual_considerations.jpg}
+\caption{Considerations when selecting a polite utterance.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_apa_files/figure-latex/unnamed-chunk-1-1.pdf}
+\caption{\label{fig:unnamed-chunk-1}Each point represents an individual observation. Points have been jittered slightly (by .03 vertically) for readability. Black line represents a logistic regression.}
+\end{figure*}
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_apa_files/figure-latex/unnamed-chunk-2-1.pdf}
+\caption{\label{fig:unnamed-chunk-2}Each bar illustrates the mean response of participants in each age category, which is representative of the probability of indicating preference for a polite speaker. Error bars represent 95\% credible intervals based on Bayesian binomial tests.}
+\end{figure*}
