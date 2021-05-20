@@ -364,6 +364,7 @@ DV1_model = stan_glm(speaker_preference ~ age,
                      family = binomial(), 
                      data = pp_data)
 DV1_model
+summary(DV1_model)
 ```
 
 # Results
