@@ -143,9 +143,9 @@ The stimuli used by Yoon and Frank was visually complex with detailed characters
 
 There is a precedent of using shape-preference paradigms when testing very young children. Hamlin created a paradigm where... [-@hamlin2007]. A similar paradigm was used by Thomas and Sarnecka (2007) [-@thomas2019].
 
-![Stimuli sample from Hamlin et al. (2007).](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/hamlin2007b.jpg)
+![Stimuli sample from Hamlin et al. (2007).](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/hamlin2007.jpg)
 
-![Stimuli sample from Thomas and Sarnecka (2019). The rectangular puppet was red. The oval puppet was yellow. The white arrows in the fifth row indicate that the puppet moved upstage after it bowed, clearing the way for the other puppet. The roles of the puppets and the directions they traveled were counterbalanced across participants.](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/thomas2019b.jpg)
+![Stimuli sample from Thomas and Sarnecka (2019). The rectangular puppet was red. The oval puppet was yellow. The white arrows in the fifth row indicate that the puppet moved upstage after it bowed, clearing the way for the other puppet. The roles of the puppets and the directions they traveled were counterbalanced across participants.](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/thomas2019.jpg)
 
 ## The Current Study
 
@@ -197,11 +197,15 @@ Prior to data collection, we decided to exclude a child from the study if:
 
 The animation began with a (secondary) familiarization phase in which a shape (the speaker) entered from the left of the screen, spotted two cookies on the opposite side of the screen, gasped excitedly, approached the cookies, ate one cookie, and celebrated by jumping up and down. The purpose of this phase was to inform the participant that the speaker’s goal was to eat a cookie.
 
-A testing phase followed in which the speaker entered from the left of the screen and stopped in front of another shape (the listener), who was standing in the way of the cookies. In the polite condition, the speaker said, “I am so hungry! May I have a cookie please?” In the impolite condition, the speaker said, “I am so hungry! Give me a cookie now.” Regardless of condition, the listener moved out of the speaker’s way. The speaker gasped excitedly, crossed in front of the listener, approached the cookies, ate one cookie, and celebrated by jumping up and down.
+![Familiarization phase.](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/familiarization.jpg)
+
+A testing phase followed in which the speaker entered from the left of the screen and stopped in front of another shape (the listener), who was standing in the way of the cookies. In the polite condition, the speaker said, “I am so hungry! May I have a cookie, please?” In the impolite condition, the speaker said, “I am so hungry! Give me a cookie now.” Regardless of condition, the listener moved out of the speaker’s way. The speaker gasped excitedly, crossed in front of the listener, approached the cookies, ate one cookie, and celebrated by jumping up and down.
 
 Utterances used in the animation were prerecorded. Intonation was naturalistic and did not include exaggerated “polite” or “impolite” prosody. Utterances were cleaned using Audacity, an audio editing and recording software [@audacity2020], and RMS was standardized across conditions using Praat, a phonetics software [@boersman2020].
 
 The background consisted of a solid, green block and solid, blue block depicting grass and sky. The listener was always a blue circle. The polite and impolite speakers consisted of either a red triangle and yellow square or a yellow triangle and red square. The triangle and square were the same height and width. The shape of the speaker (triangle/square), color of the shape (red/yellow), and order of the conditions (first/second) were counterbalanced across trials.
+
+![Testing phase.](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/testing.jpg)
 
 ## Randomization
 
