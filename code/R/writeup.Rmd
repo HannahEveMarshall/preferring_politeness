@@ -25,7 +25,7 @@ abstract: |
   Adults routinely demonstrate social sensitivity by utilizing polite speech. But when do children begin to comprehend linguistic politeness? Existing literature indicates that basic comprehension of polite speech presents early in development; however, previous studies have not observed reliable preference for a polite speaker in children younger than 4 years, potentially due to experimental task demands. This project uses a less challenging paradigm (adapted from similar shape-preference paradigms, i.e., Hamlin, Wynn, & Bloom, 2007; Thomas & Sarnecka, 2019) to investigate the age of polite language acquisition. Our data showed that 2-year-old and 4-year-old children indicate preference for a polite speaker, whereas 3-year-old children indicate preference for an impolite speaker, suggesting that preference for a polite speaker--and perhaps comprehension and acquisition of linguistic politeness more broadly--does not develop as a smooth, upward trend across development. In addition to informing our understanding of children’s sociolinguistic development, this study demonstrates the effectiveness of a simpler paradigm for future studies of linguistic politeness in young children.
   
 keywords          : "politeness, language acquisition, pragmatic development, online experiment"
-wordcount         : "3557"
+wordcount         : "5,009"
 
 bibliography      : ["references/references.bib"]
 
@@ -115,6 +115,8 @@ Speaking with an appropriate degree of politeness comes intuitively to most adul
 
 ![Considerations when selecting a polite utterance.](C:/Users/Hannah/Desktop/preferring_politeness/figures/diagrams/contextual_considerations.jpg)
 
+\newpage
+
 In selecting a polite utterance, an individual must first consider the interpersonal context of their interaction. According to Lakoff's [-@lakoff1973] first rule of politeness--Distance--it is important for speakers to maintain the social distance between themselves and their interlocutors. To be appropriately polite, an individual must vary their level and form of linguistic politeness depending on this social distance, which may be evinced in age, gender, occupation, and social status [@lakoff1973; @pedlow2001]. For example, it may be more appropriate for a younger person to speak more politely to an older person than to someone of a similar age, and it may be more appropriate for a male to speak more politely to a female than to another male.
 
 After considering the interpersonal context of their interaction, a person must consider the degree of politeness which is appropriate for the unique social setting. For instance, a sense of urgency makes it more appropriate to opt for the imperative (and less polite) phrase “Call an ambulance, now,” as opposed to asking, “Ms. Smith, when you have a moment, would you mind calling an ambulance, please?”
@@ -147,9 +149,15 @@ The stimuli used by Yoon and Frank was visually complex with detailed characters
 
 There is a precedent of using shape-preference paradigms when assessing social preference in very young children. Both Hamlin et al. (2007) and Thomas and Sarnecka (2019) employ shape-preference paradigms in which characters are represented by colored shapes with eyes and a mouth to indicate animacy. This type of paradigm may be more accessible to young children than more visually complex stimuli; basic colors and shapes allow children to easily distinguish between the characters without visual distraction.
 
-![Stimuli sample from Hamlin et al. (2007). A character attempted to climb a hill and failed twice. On the third attempt, the climber was either bumped up the hill by the helper (top left panel) or bumped down the hill by the hinderer (bottom left panel). The child was presented with the helper and hinder (right panel), and the child's grabbing or reaching behavior was treated as indication of preference.](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/hamlin2007.jpg)
+\newpage
 
-![Stimuli sample from Thomas and Sarnecka (2019). The rectangular puppet was red. The oval puppet was yellow. The white arrows in the fifth row indicate that the low-status puppet moved upstage after it bowed, clearing the way for the high-status puppet (left panel). The child was presented with the high-status and low-status puppets (right panel), and the child's grabbing or reaching behavior was treated as indication of preference.](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/thomas2019.jpg)
+![Stimuli sample from Hamlin et al. (2007). A character attempted to climb a hill and was either bumped up the hill by a helper (top left panel) or bumped down the hill by a hinderer (bottom left panel). The child was presented with the helper and hinder (right panel), and the child's grabbing or reaching behavior was treated as indication of preference.](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/hamlin2007.jpg)
+
+\newpage
+
+![Stimuli sample from Thomas and Sarnecka (2019). A high-status and a low-status character approached each other and collided. The low-status character yielded by bowing and moving upstage (left panel). The child was presented with the high-status and low-status puppets (right panel), and the child's grabbing or reaching behavior was treated as indication of preference.](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/thomas2019.jpg)
+
+\newpage
 
 ## The Current Study
 
@@ -164,6 +172,8 @@ By making these adjustments, the current study proposes a more accessible task, 
 1. Considering our less challenging task, we predicted that 2-year-old, 3-year-old, and 4-year-old children would indicate preference for a polite speaker over an impolite speaker (i.e. the proportion of children in each age category who indicated preference for a polite speaker would differ from chance).
 
 2. Considering evidence for graded comprehension of politeness in young children [@yoon2019], we predicted that children would indicate preference for a polite speaker over an impolite speaker more reliably (i.e. with a stronger effect) with increasing age.
+
+\newpage
 
 # Methods
 
@@ -434,27 +444,47 @@ pp_data %>%
 ggsave(filename = "vis2.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
 ```
 
+\newpage
+
 # Discussion
 
-Through this study, we replicated prior research which suggested that 4-year-old children reliably indicate preference for a polite speaker, whereas 3-year-old children do not [@yoon2019]; however, our data suggest that this is not indicative of the onset of this preference. 
+In this study, we sought to determine whether children younger than 4 years possess a preference for a polite speaker over an impolite speaker. We replicated prior research which suggested that 4-year-old children reliably indicate preference for a polite speaker, whereas 3-year-old children do not [@yoon2019]; however, our data suggest that this is not indicative of the onset of this preference. By employing a shape-preference paradigm with fewer experimental task demands than in prior studies, we were able to show that 2-year-old children also reliably indicate preference for a polite speaker over an impolite speaker. These findings suggest that the onset of an implicit comprehension of linguistic politeness may occur as early as or before 2 years.
 
-Our results show that 2-year-old children also reliably indicate preference for a polite speaker over an impolite speaker. There is strong evidence that infants as young as 6 months are capable of social evaluation and prefer prosocial others to antisocial others [@hamlin2007]. Children begin producing polite language as early as 2 years old [@read1978; @bates1977], and children understand language prior to producing it. Reconciling this existing literature with our data suggests that by 2 years, children recognize polite language as prosocial, which motivates them to prefer polite speakers over impolite speakers. 
+## Preference for a Polite Speaker in Children Younger Than 4 Years
 
-The performance of 2-year-old children in our task is comparable to the performance of 4-year-old children, indicating that there is not a substantial developmental "improvement" on this task between 2 and 4 years: All of the cognitive capacities that are necessary for identifying politeness markers, forming an opinion about the speaker based on these markers, and indicating a preference is present at 2 years old.
+Consistent with existing literature, our study confirmed that 4-year-old children reliably indicate preference for a polite speaker [@yoon2019].
 
-3-year-old children performed much differently than expected: 3-year-old children performed *below* chance, indicating preference for the impolite speaker. This substantial declivity in performance on this task is meaningful because it demonstrates that, contrary to prior belief, preference for a polite speaker--and perhaps comprehension and acquisition of linguistic politeness more broadly--does not develop as a smooth, upward trend across development.
+In contrast to prior literature, our combined sample of 2-year-old, 3-year-old, and 4-year-old children indicated preference for a polite speaker above chance level. Our logistic regression revealed a slightly positive overall effect of age on the probability that a child would indicate preference for a polite speaker (see Figure 7). Our results  offer evidence in support of our second hypothesis: Considering evidence for graded comprehension of politeness in young children [@yoon2019], we predicted that children would indicate preference for a polite speaker over an impolite speaker more reliably with increasing age.
 
-3-year-old children may prefer an impolite speaker due to the unexpected nature of the speaker's language. There is compelling evidence that young children prefer--and choose to engage with--toys which function unexpectedly [@schulz2007; @gweon2008; @bonawitz2012]. At 3 years, most children enter preschool, at which point they experience a sudden increase in their amount of social interaction with peers. In this socially rich environment, children may be more interested in *exploring* the social world and thus select the character whose utterance is the least expected. By 4 years, children have gained significant experience with social world and consequences of prosocial and antisocial behavior, which may cause them to revert back to preferring prosocial others.
+Further, the intercept of our model revealed performance above chance as early as 2 years. This finding suggests that socio-pragmatic competence--specifically implicit comprehension of linguistic politeness as indicated by preference for a polite speaker--is established as early as 2 years: 2 years earlier than alleged by prior research.
 
-The context that is presented in our animation is foreign to many children. From a very young age, if a child asks nicely, their wished are granted, and if they ask rudely, they are often corrected by an adult (e.g., "What do you say?" or "What's the magic word?"). In our animation, the request of both the polite and impolite characters were granted. This may have exacerbated any effect that was due to the unexpectedness.
+The performance of 2-year-old children in our task is comparable to the performance of 4-year-old children, indicating that there is not a substantial increase in the probability of indicating preference for a polite speaker between 2 and 4 years: All of the cognitive capacities that are necessary for identifying politeness markers, forming an opinion about the speaker based on these markers, and indicating a preference is present at 2 years old.
 
-It is worth noting that multiple children in our sample distinctly giggled after the impolite speaker made its utterance. In response to DV2, some children even credited their choice of the impolite speaker to their perception that the speaker was "funny" or "silly". Humor, as a component of social interaction, may contribute to 3-year-old children's interest in and preference for impolite speakers.
+There is strong evidence that infants as young as 6 months are capable of social evaluation and prefer prosocial others to antisocial others [@hamlin2007]. Children begin producing polite language as early as 2 years old [@read1978; @bates1977], and children understand language prior to producing it. Reconciling this existing literature with our data suggests that by 2 years, children recognize polite language as prosocial, which motivates them to prefer polite speakers over impolite speakers. This understanding of polite language as an indicator of prosociality may be due in part to children recognizing the co-occurence of politeness markers and other positive words, for example, “You should be nice and say please” [@yoon2019].
 
-Alternatively, our data may overestimate 3-year-old children's preference for impolite speakers; perhaps 3-year-old children actually perform at chance. If this is the case, it may be due to a shift in developmental priorities. As children enter preschool--a novel, rich, and stimulating environment--concepts like shape and color as well as object-referent and categorical language become salient. At this stage, social evaluation may not be a developmental priority, so children may not possess strong preferences based on prosociality. By 4 years, children have had ample opportunity to explore their physical and linguistic environments, so perhaps social evaluation, once again, becomes pertinent as children explore assessing, engaging with, and relating to the people and social world around them.
+As an alternative to this preference for prosocial language, children may prefer polite speakers due to the reinforcement they receive from adults early on in development. English-speaking children are often explicitly taught and prompted to use politeness markers in their requests from early on [@gleason1976]. Adults often praise polite language and good manners in children. Further, adults are more likely to grant the requests of children who speak politely.
 
-Politeness is extremely broad and is used across several contexts (see Figure 1). As such, this study was only able to examine children's preference for a polite speaker in a very specific scenario which represents only a very small portion of the landscape in which linguistic politeness is usually employed.
+## Unexpected Performance of 3-Year-Old Children
 
-Through this study, we developed and demonstrated the effectiveness of a less challenging paradigm for studying politeness in young children. We discovered that children younger that 4 years are able to reliably indicate preference for a polite speaker; however, we observed a substantial drop in the developmental trajectory of this preference, as seen in 3-year-old children. In order to confirm our findings, they must be replicated. Once replicated, our shape-preference paradigm can be used to study other aspects of linguistic politeness and further untangle the question of how to characterize young children's acquisition and conceptualization of polite language.
+Our sample of 3-year-old children performed much differently than expected: 3-year-old children performed *below* chance, indicating preference for the impolite speaker. While we observed a numerical dip in the probability of 3-year-old children indicating preference for a polite speaker, our intuition is that this is not indicative of a true declivity. It is unusual for developmental trajectories to be characterized by a temporary slump; therefore, our data may under-estimate the true probability of 3-year-old children indicating preference for a polite speaker. Unfortunately, our sample size was not large enough to assuredly discern the difference between a chance deviation and a true deviation from our hypothesized developmental trajectory. In order to make this distinction, our results will have to be replicated.
+
+It is, however, possible that the numerical dip we observed in 3-year-old children is indicative of a true developmental trend. If replicated, this finding would be meaningful because it would demonstrate that, contrary to prior belief, preference for a polite speaker--and perhaps comprehension and acquisition of linguistic politeness more broadly--does not develop as a smooth, upward trend across development.
+
+At 3 years, most children enter preschool, at which point they experience a sudden increase in their amount of social interaction with peers. In this socially rich environment, children may be more interested in *exploring* the social world and thus select the character whose utterance is the least expected as opposed to the character whose utterance is the most prosocial. By 4 years, children have gained significant experience with the social world and consequences of prosocial and antisocial behavior, which may cause them to revert back to preferring prosocial others.
+
+## Limitations
+
+While preference for a polite speaker, itself, is a meaningful measure of socio-pragmatic competence, preference for a polite speaker may not sufficiently capture children's implicit comprehension of linguistic politeness. In this study, we use preference for a polite speaker as an operationalization of implicit comprehension of linguistic politeness; however, this measurement masks comprehension of linguistic politeness that manifests as preference for an impolite speaker.
+
+Some children may prefer an impolite speaker due to the unexpected nature of the speaker's language. There is compelling evidence that young children prefer--and choose to engage with--toys which function unexpectedly [@schulz2007; @gweon2008; @bonawitz2012]. The context that is presented in our animation is foreign to many children: From a very young age, if a child asks nicely, their wished are granted, and if they ask rudely, they are corrected by an adult (e.g., "What do you say?" or "What's the magic word?"). In our animation, the request of both the polite and impolite characters were granted. The unexpected response to the impolite speaker may motivate some children to prefer the impolite speaker.
+
+It is also worth noting that multiple children in our sample distinctly giggled after the impolite speaker made its utterance. In response to DV2, some children even credited their choice of the impolite speaker to their perception of the speaker as "funny" or "silly". Humor, as a component of social interaction, may contribute to some children's interest in and preference for impolite speakers.
+
+Politeness is extremely broad and is used across several contexts (see Figure 1). As such, this study was only able to examine children's preference for a polite speaker in a very specific scenario which represents only a very small portion of the landscape in which linguistic politeness is usually employed. Children's preference for a polite speaker may vary across contexts. Likewise, there is myriad evidence that children hone their contextual use of politeness as they age [@axia1985; @bates1977; @becker1986; @ervintripp1977; @gleason1976; @james1978; @wood1980]; thus, young children may only possess preference for a polite speaker or, more broadly, comprehension of linguistic politeness in a limited number of social contexts. 
+
+## Conclusion
+
+In sum, through this study, we developed and demonstrated the effectiveness of a more accessible paradigm for studying politeness in young children. We discovered that children younger that 4 years are able to reliably indicate preference for a polite speaker; however, we unexpectedly observed a dip in the developmental trajectory of this preference, as seen in 3-year-old children. This dip may be an artifact of the paradigm, a chance result, or indicative of a true change in preference. In order to confirm our findings, they must be replicated. Once replicated, our shape-preference paradigm can be used to study other aspects of linguistic politeness and further untangle the question of how to characterize young children's acquisition and conceptualization of polite language.
 
 \newpage
 
