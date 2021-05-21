@@ -15,6 +15,7 @@ Adults routinely demonstrate social sensitivity by employing polite speech. Bein
 │   └── diagrams
 │   └── images
 │   └── plots
+├── materials
 ├── papers
 ├── posters
 ├── presentations
@@ -46,23 +47,6 @@ Adults routinely demonstrate social sensitivity by employing polite speech. Bein
     * _plot2_: Plot illustrating probability of indicating preference for a polite speaker by age category
     * _plot3_: Plot illustrating number of children in each age category that provided different types of reasoning for their preferences
 * **materials**:
-  * **stimuli**:
-    * _pp_1_: Counterbalanced animation 1
-    * _pp_2_: Counterbalanced animation 2
-    * _pp_3_: Counterbalanced animation 3
-    * _pp_4_: Counterbalanced animation 4
-    * _pp_5_: Counterbalanced animation 5
-    * _pp_6_: Counterbalanced animation 6
-    * _pp_7_: Counterbalanced animation 7
-    * _pp_8_: Counterbalanced animation 8
-    * _pp_9_: Counterbalanced animation 9
-    * _pp_10_: Counterbalanced animation 10
-    * _pp_11_: Counterbalanced animation 11
-    * _pp_12_: Counterbalanced animation 12
-    * _pp_13_: Counterbalanced animation 13
-    * _pp_14_: Counterbalanced animation 14
-    * _pp_15_: Counterbalanced animation 15
-    * _pp_16_: Counterbalanced animation 16
   * _full_script_: Full script for online studies
 * **papers**:
   * _axia1985_: Axia & Baroni, 1985
