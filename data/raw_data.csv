@@ -10,7 +10,7 @@ subject,subject_id,video_id,age_category,animation,age,race,gender,first_languag
 9,ob448,9_ob448,2,9,2.14,White,male,English,all of the time,no,no,polite,none,square,red,first,left,TRUE,2,4,5,5,no,
 10,ob472,10_ob472,2,14,2.65,Prefer not to say,female,English,most of the time,no,no,polite,other,triangle,yellow,second,left,TRUE,1,4,5,5,,
 11,ob502,11_ob502,2,6,2.57,White,male,English,all of the time,no,no,impolite,none,triangle,red,first,right,TRUE,2,5,5,5,,playing with a red car
-12,ob626,12_ob626,2,13,2.25,White,male,English,all of the time,no,CHECK,polite,CHECK,triangle,yellow,second,right,TRUE,3,5,5,4,,
+12,ob626,12_ob626,2,13,2.25,White,male,English,all of the time,no,CHECK,polite,none,triangle,yellow,second,right,TRUE,3,5,5,4,,
 13,oc236,13_oc236,2,8,2.29,White,female,Englsih,all of the time,no,no,polite,none,square,yellow,first,right,TRUE,3,5,4,3,,
 14,oc237,14_oc237,2,4,2.88,White,prefer not to say,English,all of the time,no,no,polite,superficial,triangle,red,second,left,TRUE,2,5,5,5,,
 15,ob689,15_ob689,2,15,2.43,White,female,English,most of the time,no,no,polite,superficial,triangle,yellow,first,left,TRUE,2,5,4,4,no,
