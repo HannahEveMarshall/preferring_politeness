@@ -283,9 +283,9 @@ is.matrix(speaker_matrix)
 
 ```{r binomial_test, include = F}
 binomial_test = bayes.binom.test(x = speaker_matrix["2","1"] + speaker_matrix["3","1"] + speaker_matrix["4","1"], 
-                                  n = nrow(pp_data), 
-                                  comp.theta = .5, 
-                                  cred.mass = .95)
+                                 n = nrow(pp_data), 
+                                 comp.theta = .5, 
+                                 cred.mass = .95)
 binomial_test
 ```
 
@@ -372,9 +372,6 @@ summary(DV1_model)
 
 ```{r DV1_posterior_interval, include = F}
 posterior_interval(DV1_model, prob = .95)
-
-# Intercept: 95% credible interval [-2.44, 2.19]
-# Age: 95% credible interval [-0.50, 0.73]
 ```
 
 # Results
@@ -420,7 +417,7 @@ ggplot(pp_data,
        x = "Age (years)", 
        y = "Probability of indicating preference for a polite speaker")
 
-ggsave(filename = "vis1.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
+ggsave(filename = "plot1.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
 ```
 
 \newpage
@@ -454,7 +451,7 @@ pp_data %>%
        x = "Age category (years)", 
        y = "Probability of indicating preference for a polite speaker")
 
-ggsave(filename = "vis2.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
+ggsave(filename = "plot2.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
 ```
 
 ```{r exploratory, include = F}
@@ -472,14 +469,14 @@ Our supplementary dependent variable measure did not elicit particularly consequ
 ```{r echo = F, warning = F, message = F, fig.cap = 'Each bar illustrates the number of children in each age category that provided each type of reasoning in response to DV2. The plot is faceted by age category.'}
 pp_data_mutated = pp_data %>% 
   mutate(reasoning = fct_relevel(reasoning,
-                            "other",
-                            "none",
-                            "superficial",
-                            "logical"))
+                                 "other",
+                                 "none",
+                                 "superficial",
+                                 "logical"))
 ggplot(pp_data_mutated, aes(x = reasoning,
-                    fill = reasoning)) +
-    geom_bar() +
-    facet_grid(cols = vars(age_category)) +
+                            fill = reasoning)) +
+  geom_bar() +
+  facet_grid(cols = vars(age_category)) +
   theme(legend.position = "none",
         axis.text.x = element_text(angle = 90,
                                    hjust = 1,
@@ -487,6 +484,8 @@ ggplot(pp_data_mutated, aes(x = reasoning,
   labs(title = "Number of children in each age category that provided different types of\nreasoning for their preferences",
        x = "Reasoning type", 
        y = "Number of children in each age category")
+
+ggsave(filename = "plot3.png", path = "C:/Users/Hannah/Desktop/preferring_politeness/figures/plots")
 ```
 
 \newpage
