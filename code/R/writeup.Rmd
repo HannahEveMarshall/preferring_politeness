@@ -145,7 +145,7 @@ Children understand the implications of polite speech early on. In a study by Yo
 
 Because (1) children tend to comprehend language before producing it [@clark1983], (2) children produce "please" at  2.5 years [@read1978],  (3) polite language is considered prosocial [@brown1978], and (4) infants as young as 6 months prefer prosocial characters [@hamlin2007], it seems plausible that children at least as young as 2.5 years should indicate preference for a polite speaker. Considering this, Yoon and Frank may have not observed reliable preference for a polite speaker in children younger than 4 years due to experimental task demands.
 
-The stimuli used by Yoon and Frank was visually complex with detailed characters and backgrounds, which may have distracted children from the characters' speech. Because the children were read a series of 12 stories, performance on the task required a long attention span. Further, the stories were narrated, so the superfluous auditory input may have made it difficult for younger children to note the difference between polite and impolite speech. Overall, these features of the stimuli may have made the task less accessible to younger children.
+The stimuli used by Yoon and Frank were visually complex with detailed characters and backgrounds, which may have distracted children from the characters' speech. Because the children were read a series of 12 stories, performance on the task required a long attention span. Further, the stories were narrated, so the superfluous auditory input may have made it difficult for younger children to note the difference between polite and impolite speech. Overall, these features of the stimuli may have made the task less accessible to younger children.
 
 ![Stimuli sample from Yoon and Frank (2019).](C:/Users/Hannah/Desktop/preferring_politeness/figures/images/yoon2019.jpg)
 
@@ -267,7 +267,7 @@ DV1 was dummy coded with preference for the polite speaker as 1 and preference f
 
 *	Logical reasoning: any explanation that refers to speaker utterance and is consistent with the animation (e.g., describing the polite speaker as “nice” or “polite”).
 
-*	Other reasoning: any explanation or utterance that cannot be classified by the three other reasoning types (e.g., an intelligible response).
+*	Other reasoning: any explanation or utterance that cannot be classified by the three other reasoning types (e.g., an unintelligible response).
 
 Our study used pairwise deletion: If a child did not complete DV2, their DV1 data was still included in analyses. Two-tailed tests were used for each of our analyses. We made inferences based on credible intervals, using a 95% credible interval criterion for success.
 
