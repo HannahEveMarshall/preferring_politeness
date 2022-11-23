@@ -65,7 +65,5 @@ Adults routinely demonstrate social sensitivity by employing polite speech. Bein
   * _thomas2019_: Thomas & Sarnecka, 2019
   * _yoon2019_: Yoon & Frank, 2019
   * _yoon2020_: Yoon et al., 2020
-* **posters**:
-  * _aug_2020_poster_: Poster detailing work-in-progress as of August 2020, originally developed for the 2020 Psych-Summer Poster Session at Stanford University
 * **writeup**:
   * _writeup_: PDF of final thesis
