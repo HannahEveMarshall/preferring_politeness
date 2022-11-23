@@ -17,7 +17,6 @@ Adults routinely demonstrate social sensitivity by employing polite speech. Bein
 │   └── plots
 ├── materials
 ├── papers
-├── posters
 └── writeup
 
 ```
